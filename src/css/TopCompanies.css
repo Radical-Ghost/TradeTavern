@@ -1,17 +1,17 @@
 /* Add this CSS to your stylesheet */
 .scroll-container {
-    max-width: 350px;
-    overflow-y: auto;
-    height: 541px;
-    border-radius: 15px;
-    background-color: lavender;
-    margin-right: 10px;
-    /* Hide scrollbar */
-    scrollbar-width: none;
-    /* For Firefox */
+	max-width: 350px;
+	overflow-y: auto;
+	height: 541px;
+	border-radius: 15px;
+	background-color: lavender;
+	margin-right: 10px;
+	/* Hide scrollbar */
+	scrollbar-width: none;
+	/* For Firefox */
 }
 
 /* For WebKit browsers (Chrome, Safari) */
 .scroll-container::-webkit-scrollbar {
-    display: none;
+	display: none;
 }

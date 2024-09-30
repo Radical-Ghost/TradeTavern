@@ -35,7 +35,9 @@ export default function Sidebar() {
 					{" "}
 					{/* Sidebar header */}
 					<h3 className="mt-3 text-center py-2 logo-font">
-						TradeTavern
+						<Nav.Link as={Link} to="/">
+							TradeTavern
+						</Nav.Link>
 					</h3>
 					<Nav className="flex-column p-1">
 						{" "}
@@ -62,7 +64,9 @@ export default function Sidebar() {
 					{" "}
 					{/* Sidebar footer */}
 					<Nav className="flex-column p-1">
-						<h5 className="mt-3 text-white text-center">Support</h5>{" "}
+						<h5 className="mt-3 text-white text-center py-2">
+							Support
+						</h5>{" "}
 						{/* Support-text-temporary */}
 						<Nav.Link as={Link} to="/about">
 							<FaInfoCircle style={iconStyle} />{" "}
