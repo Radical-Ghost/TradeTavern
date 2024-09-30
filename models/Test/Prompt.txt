@@ -1,3 +1,0 @@
-im making a project name TradeTavern on react {using the vite for fast compilation} will be using fire base for the backend and Flask as a middle ware am i correct in all of these 
-
-the site is a trading website which shows the ML model i created which predict the stock prices and also has a lot of other featires like login/signup, demo stock market for trading and handeling the transactionas along with apis for real time data to be shown on the site 
