@@ -1,4 +1,3 @@
-
 import {
     BrowserRouter as Router,
     Routes,
@@ -22,7 +21,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useState } from 'react';
 // import LoginModal from './LoginModal';
 // import SignupModal from './components/SignupModal';
-
 
 function App() {
     const location = useLocation();
@@ -55,7 +53,5 @@ const AppWrapper = () => (
         <App />
     </Router>
 );
-
-
 
 export default AppWrapper;
