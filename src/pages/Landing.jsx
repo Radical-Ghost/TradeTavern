@@ -2,15 +2,15 @@ import { Nav, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useInView } from "react-intersection-observer"; // Import the useInView hook
 import Bckimage from "../images/background.jpg"; // Import the background image
 import "../css/Landing.css"; // Custom CSS for animations and design enhancements
-import LoginModal from "./popups/Login_popup.js";
-import SignupModal from "./popups/Signup_popup.js";
+import LoginModal from "../components/popups/Login_popup.jsx";
+import SignupModal from "../components/popups/Signup_popup.jsx";
 import { useState } from "react";
 
 function useCustomInView() {
 	return useInView({
 		triggerOnce: true,
-		threshold: 0.1,../components/popups/Login_popup.jsx
-	});../components/popups/Signup_popup.jsx
+		threshold: 0.1,
+	});
 }
 
 export default function LandingPage() {
@@ -45,10 +45,6 @@ export default function LandingPage() {
 								xs={12}
 								md={6}
 								className="d-flex align-items-center">
-								<span className="me-3">
-									<i className="bi bi-geo-alt-fill me-2"></i>{" "}
-									Find A Location
-								</span>
 								<span className="me-3">+01234567890</span>
 								<span>Example@gmail.com</span>
 							</Col>
@@ -69,10 +65,8 @@ export default function LandingPage() {
 										className="me-3">
 										Login
 									</Nav.Link>
-									<Nav.Link
-										href="/dashboard"
-										className="me-3">
-										My Dashboard
+									<Nav.Link href="/Home" className="me-3">
+										Home
 									</Nav.Link>
 								</Nav>
 								<LoginModal
