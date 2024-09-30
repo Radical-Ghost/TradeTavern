@@ -1,7 +1,5 @@
-import React from 'react';
 import { Container, Row, Col, Nav } from 'react-bootstrap'; // Ensure to import these components
 import Navigationbar from './comp/Navbar';
-import StockGraph from './comp/StockGraph'; // If you need to use this later
 import BothGraphs from './comp/BothGraphs';
 
 const Home = () => {

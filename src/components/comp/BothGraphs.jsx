@@ -1,19 +1,21 @@
-import React from 'react';
-import { Row, Col } from 'react-bootstrap';
-import TopCompanies from './TopCompanies'; // Import the TopCompanies component
-import StockGraph from './StockGraph'; // Assume you have a StockGraph component
+import TopCompanies from "./TopCompanies"; // Import the TopCompanies component
+import StockGraph from "./StockGraph"; // Assume you have a StockGraph component
 
-const YourMainComponent = () => {
-  return (
-    <Row>
-      <Col md={8}>
-        <StockGraph /> {/* Your stock graph component */}
-      </Col>
-      <Col md={4}>
-        <TopCompanies /> {/* Your TopCompanies component */}
-      </Col>
-    </Row>
-  );
+const main_page = () => {
+	return (
+		<div className="row" style={{
+      display: "gird",
+      gridTemplateColumns: "1fr 1fr",
+      
+    }}>
+			<div className="col">
+				<StockGraph />
+			</div>
+			<div className="col">
+				<TopCompanies />
+			</div>
+		</div>
+	);
 };
 
-export default YourMainComponent;
+export default main_page;
