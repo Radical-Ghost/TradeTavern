@@ -1,4 +1,4 @@
-import Sidebar from "../components/comp/Sidebar.jsx;
+import Sidebar from "../components/Sidebar.jsx";
 // import Graph from './comp/StockGraph';
 
 export default function Dashboard() {

@@ -1,5 +1,5 @@
 import { Card, Col, Row, Container } from "react-bootstrap";
-import "../../css/TopCompanies.css";
+import "../css/TopCompanies.css";
 
 // Sample data for top companies
 const topCompanies = [

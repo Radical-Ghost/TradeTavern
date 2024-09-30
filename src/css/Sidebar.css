@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap");
+
 .nav-link:hover {
-	background-color: #161b2c;
-	border-radius: 5px;
-	color: white;
+	background-color: #121621;
+	border-radius: 0.5rem;
 }
 
 .sidebar {
@@ -9,4 +10,16 @@
 	height: 100vh;
 	min-width: 14rem;
 	z-index: 1000;
+}
+
+.center-nav-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.logo-font {
+	font-family: "Playwrite DE Grund", cursive;
+	color: #19ff30;
 }

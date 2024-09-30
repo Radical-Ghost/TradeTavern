@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const LoginModal = ({ show, handleClose }) => {
+export default function LoginModal({ show, handleClose }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -58,6 +58,4 @@ const LoginModal = ({ show, handleClose }) => {
 			</Modal.Body>
 		</Modal>
 	);
-};
-
-export default LoginModal;
+}

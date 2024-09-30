@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { FaHome, FaInfoCircle, FaDollarSign } from "react-icons/fa";
 import { MdOutlineDashboard, MdHelpOutline } from "react-icons/md";
 import { CgCommunity } from "react-icons/cg";
-import "../../css/Sidebar.css";
+import "../css/Sidebar.css";
 
+//styles to be applied to the icons
 const iconStyle = {
 	color: "#8d9498",
 	marginTop: "6px",
@@ -17,6 +18,7 @@ const iconStyle = {
 	lineHeight: "1.5rem",
 };
 
+//styles to be applied to the text
 const textStyle = {
 	color: "#8d9498",
 	textAlign: "center",
@@ -30,17 +32,17 @@ export default function Sidebar() {
 		<>
 			<div className="sidebar d-flex flex-column justify-content-between">
 				<div className="sidebar-header">
-					<div className="logo-header d-flex">
-						<Nav.Link as={Link} to="/">
-							<div className="d-flex">
-								<p className="mt-3 text-white">TradeTavern</p>
-							</div>
-						</Nav.Link>
-					</div>
+					{" "}
+					{/* Sidebar header */}
+					<h3 className="mt-3 text-center py-2 logo-font">
+						TradeTavern
+					</h3>
 					<Nav className="flex-column p-1">
+						{" "}
+						{/* Navigation-text-temporary */}
 						<Nav.Link as={Link} to="/home">
-							<FaHome style={iconStyle} />{" "}
-							<p style={textStyle}>Home</p>
+							<FaHome style={iconStyle} /> {/* Home icon */}
+							<p style={textStyle}>Home</p> {/* Home text */}
 						</Nav.Link>
 						<Nav.Link as={Link} to="/dashboard">
 							<MdOutlineDashboard style={iconStyle} />{" "}
@@ -57,8 +59,11 @@ export default function Sidebar() {
 					</Nav>
 				</div>
 				<div className="sidebar-footer">
+					{" "}
+					{/* Sidebar footer */}
 					<Nav className="flex-column p-1">
-						<h5 className="mt-3 text-white ">Support</h5>
+						<h5 className="mt-3 text-white text-center">Support</h5>{" "}
+						{/* Support-text-temporary */}
 						<Nav.Link as={Link} to="/about">
 							<FaInfoCircle style={iconStyle} />{" "}
 							<p style={textStyle}>About</p>
