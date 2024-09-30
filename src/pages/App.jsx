@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./Home"; // Create these components
 // import Features from './Features';
 // import Pricing from './Pricing';
@@ -10,12 +10,18 @@ import Invest from "./Invest";
 import Landing from "./Landing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+//import React, { useState } from 'react';
+// import LoginModal from './LoginModal';
+// import SignupModal from './components/SignupModal';
 
-function App() {
+export default function App() {
+	const location = useLocation();
+	const isLandingPage = location.pathname === "/";
+
 	return (
 		<>
 			<div style={{ display: "flex" }}>
-				{/* <Navigationbar /> */}
+				{/* <Sidebar /> */}
 				<div className="content" style={{ width: "100%" }}>
 					<Routes>
 						<Route path="/home" element={<Home />} />
@@ -32,11 +38,3 @@ function App() {
 		</>
 	);
 }
-
-const AppWrapper = () => (
-	<Router>
-		<App />
-	</Router>
-);
-
-export default AppWrapper;

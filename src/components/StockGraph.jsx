@@ -25,13 +25,13 @@ const StockGraph = () => {
 		<div
 			className="bg-light p-3"
 			style={{
-				borderRadius: "1rem",
-				margin: "1.5rem",
-				width: "60%",
-				height: "100%",
+				marginLeft: "30px",
+				borderRadius: "15px",
+				marginTop: "24px",
+				width: "850px",
 			}}>
 			<h3 className="text-center">Stock Price Over Time</h3>
-			<ResponsiveContainer width="100%" height="">
+			<ResponsiveContainer width="100%" height={470}>
 				<LineChart data={stockData}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="date" />

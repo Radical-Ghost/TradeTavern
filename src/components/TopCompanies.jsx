@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, Col, Row, Container } from "react-bootstrap";
 import "../../css/TopCompanies.css";
 
@@ -22,12 +21,12 @@ const TopCompanies = () => {
 		<Container
 			className="mt-4 scroll-container"
 			style={{
+				maxWidth: "350px",
 				overflowY: "auto",
-				width: "40%",
-				height: "40%",
-				borderRadius: "1rem",
+				height: "541px",
+				borderRadius: "15px",
 				backgroundColor: "lavender",
-				margin: "1.5rem",
+				marginRight: "10px",
 			}}>
 			<h4>Top 5 Companies</h4>
 			<Row>
@@ -36,7 +35,7 @@ const TopCompanies = () => {
 						<Card>
 							<Card.Body>
 								<Card.Title>{company.name}</Card.Title>
-								<Card.Subtitle className="mb-2 text-muted">
+								<Card.Subtitle className="text-muted">
 									{company.symbol}
 								</Card.Subtitle>
 								<Card.Text>

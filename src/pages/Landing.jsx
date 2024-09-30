@@ -1,24 +1,19 @@
-import {
-	Navbar,
-	Nav,
-	Button,
-	Container,
-	Row,
-	Col,
-	Card,
-} from "react-bootstrap";
+import { Nav, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useInView } from "react-intersection-observer"; // Import the useInView hook
-import BgImg from "./comp/images/background.jpg";
+import Bckimage from "../images/background.jpg"; // Import the background image
 import "../css/Landing.css"; // Custom CSS for animations and design enhancements
+import LoginModal from "./popups/Login_popup.js";
+import SignupModal from "./popups/Signup_popup.js";
+import { useState } from "react";
 
-const useCustomInView = () => {
+function useCustomInView() {
 	return useInView({
 		triggerOnce: true,
-		threshold: 0.1,
-	});
-};
+		threshold: 0.1,../components/popups/Login_popup.jsx
+	});../components/popups/Signup_popup.jsx
+}
 
-const LandingPage = () => {
+export default function LandingPage() {
 	// Define animation triggers for each section using the custom hook
 	const [heroRef, heroInView] = useCustomInView();
 	const [howItWorksRef, howItWorksInView] = useCustomInView();
@@ -28,31 +23,66 @@ const LandingPage = () => {
 	const [testimonialsRef, testimonialsInView] = useCustomInView();
 	const [ctaRef, ctaInView] = useCustomInView();
 
+	// This is for popup login page
+	const [showLogin, setShowLogin] = useState(false);
+	const [showSignup, setShowSignup] = useState(false);
+
+	const handleLoginShow = () => setShowLogin(true);
+	const handleLoginClose = () => setShowLogin(false);
+
+	const handleSignupShow = () => setShowSignup(true);
+	const handleSignupClose = () => setShowSignup(false);
+
 	return (
 		<>
 			<div className="content" style={{ width: "100%" }}>
 				{/* Top Bar */}
-				<div className="bg-light py-2" style={{ marginTop: "-1px" }}>
-					<Container>
-						<Row className="justify-content-between">
-							<Col xs="auto">
-								<span>
-									<i className="bi bi-geo-alt-fill"></i> Find
-									A Location
-								</span>{" "}
-								|<span> +01234567890</span> |
-								<span> Example@gmail.com</span>
+				<div className="bg-light py-2">
+					<Container fluid>
+						<Row className="align-items-center">
+							{/* Left Column for Location Info */}
+							<Col
+								xs={12}
+								md={6}
+								className="d-flex align-items-center">
+								<span className="me-3">
+									<i className="bi bi-geo-alt-fill me-2"></i>{" "}
+									Find A Location
+								</span>
+								<span className="me-3">+01234567890</span>
+								<span>Example@gmail.com</span>
 							</Col>
-							<Col xs="auto">
+
+							{/* Right Column for Navigation Links */}
+							<Col
+								xs={12}
+								md={6}
+								className="d-flex justify-content-md-end justify-content-center mt-2 mt-md-0">
 								<Nav>
-									<Nav.Link href="#register">
-										Register
+									<Nav.Link
+										onClick={handleSignupShow}
+										className="me-3">
+										Signup
 									</Nav.Link>
-									<Nav.Link href="#login">Login</Nav.Link>
-									<Nav.Link href="/dashboard">
+									<Nav.Link
+										onClick={handleLoginShow}
+										className="me-3">
+										Login
+									</Nav.Link>
+									<Nav.Link
+										href="/dashboard"
+										className="me-3">
 										My Dashboard
 									</Nav.Link>
 								</Nav>
+								<LoginModal
+									show={showLogin}
+									handleClose={handleLoginClose}
+								/>
+								<SignupModal
+									show={showSignup}
+									handleClose={handleSignupClose}
+								/>
 							</Col>
 						</Row>
 					</Container>
@@ -65,7 +95,7 @@ const LandingPage = () => {
 						heroInView ? "animate-fade-in" : ""
 					}`}
 					style={{
-						backgroundImage: `url('${BgImg}')`,
+						backgroundImage: `url('${Bckimage}')`,
 						backgroundSize: "cover",
 						padding: "100px 0",
 					}}>
@@ -165,7 +195,7 @@ const LandingPage = () => {
 							</Col>
 							<Col md={6}>
 								<img
-									src={BgImg}
+									src={Bckimage}
 									alt="About Us"
 									className="img-fluid rounded shadow"
 								/>
@@ -186,7 +216,7 @@ const LandingPage = () => {
 							<Col md={4}>
 								<Card className="mb-4 service-card">
 									<Card.Body>
-										<img src={BgImg} />
+										<img src={Bckimage} />
 										<Card.Title>Trading Courses</Card.Title>
 										<Card.Text>
 											Learn from experts through our
@@ -198,7 +228,7 @@ const LandingPage = () => {
 							<Col md={4}>
 								<Card className="mb-4 service-card">
 									<Card.Body>
-										<img src={BgImg} />
+										<img src={Bckimage} />
 										<Card.Title>Mentorship</Card.Title>
 										<Card.Text>
 											Get personalized mentorship to
@@ -210,7 +240,7 @@ const LandingPage = () => {
 							<Col md={4}>
 								<Card className="mb-4 service-card">
 									<Card.Body>
-										<img src={BgImg} />
+										<img src={Bckimage} />
 										<Card.Title>24/7 Support</Card.Title>
 										<Card.Text>
 											Our team is here to help you at
@@ -234,42 +264,42 @@ const LandingPage = () => {
 						<Row className="text-center mt-4">
 							<Col md={2}>
 								<img
-									src={BgImg}
+									src={Bckimage}
 									alt="Partner 1"
 									className="img-fluid"
 								/>
 							</Col>
 							<Col md={2}>
 								<img
-									src={BgImg}
+									src={Bckimage}
 									alt="Partner 2"
 									className="img-fluid"
 								/>
 							</Col>
 							<Col md={2}>
 								<img
-									src={BgImg}
+									src={Bckimage}
 									alt="Partner 3"
 									className="img-fluid"
 								/>
 							</Col>
 							<Col md={2}>
 								<img
-									src={BgImg}
+									src={Bckimage}
 									alt="Partner 4"
 									className="img-fluid"
 								/>
 							</Col>
 							<Col md={2}>
 								<img
-									src={BgImg}
+									src={Bckimage}
 									alt="Partner 5"
 									className="img-fluid"
 								/>
 							</Col>
 							<Col md={2}>
 								<img
-									src={BgImg}
+									src={Bckimage}
 									alt="Partner 6"
 									className="img-fluid"
 								/>
@@ -290,7 +320,7 @@ const LandingPage = () => {
 							<Col md={4}>
 								<Card className="mb-4 service-card">
 									<Card.Body>
-										<img src={BgImg} />
+										<img src={Bckimage} />
 										<Card.Text>
 											"Trade Tavern has completely changed
 											my trading experience. The tools are
@@ -304,7 +334,7 @@ const LandingPage = () => {
 							<Col md={4}>
 								<Card className="mb-4 service-card">
 									<Card.Body>
-										<img src={BgImg} />
+										<img src={Bckimage} />
 										<Card.Text>
 											"I started trading with no
 											experience, but with Trade Tavern's
@@ -318,7 +348,7 @@ const LandingPage = () => {
 							<Col md={4}>
 								<Card className="mb-4 service-card">
 									<Card.Body>
-										<img src={BgImg} />
+										<img src={Bckimage} />
 										<Card.Text>
 											"The mentorship program is
 											outstanding! It has really helped me
@@ -372,6 +402,4 @@ const LandingPage = () => {
 			</div>
 		</>
 	);
-};
-
-export default LandingPage;
+}
