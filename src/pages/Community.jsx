@@ -1,11 +1,10 @@
-import React from "react";
-import Navigationbar from "./comp/Navbar";
-import Graph from "./comp/StockGraph";
+import Sidebar from "../components/comp/Sidebar.jsx;
+// import Graph from './comp/StockGraph';
 
-const Invest = () => {
+export default function Community() {
 	return (
 		<div style={{ display: "flex" }}>
-			<Navigationbar />
+			<Sidebar />
 			<div
 				className="content p-4"
 				style={{
@@ -14,10 +13,8 @@ const Invest = () => {
 					width: "100%",
 					padding: "0px",
 				}}>
-				<h1>Invest page</h1>
+				<h1>Community Page</h1>
 			</div>
 		</div>
 	);
-};
-
-export default Invest;
+}

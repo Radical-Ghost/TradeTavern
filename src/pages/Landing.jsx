@@ -1,27 +1,19 @@
-import {
-	Navbar,
-	Nav,
-	Button,
-	Container,
-	Row,
-	Col,
-	Card,
-} from "react-bootstrap";
+import { Nav, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useInView } from "react-intersection-observer"; // Import the useInView hook
-import Bckimage from "./comp/images/background.jpg";
+import Bckimage from "../images/background.jpg"; // Import the background image
 import "../css/Landing.css"; // Custom CSS for animations and design enhancements
-import LoginModal from "./LoginModal";
-import SignupModal from "./SignupModal";
-import React, { useState } from "react";
+import LoginModal from "./popups/Login_popup.js";
+import SignupModal from "./popups/Signup_popup.js";
+import { useState } from "react";
 
-const useCustomInView = () => {
+function useCustomInView() {
 	return useInView({
 		triggerOnce: true,
-		threshold: 0.1,
-	});
-};
+		threshold: 0.1,../components/popups/Login_popup.jsx
+	});../components/popups/Signup_popup.jsx
+}
 
-const LandingPage = () => {
+export default function LandingPage() {
 	// Define animation triggers for each section using the custom hook
 	const [heroRef, heroInView] = useCustomInView();
 	const [howItWorksRef, howItWorksInView] = useCustomInView();
@@ -410,6 +402,4 @@ const LandingPage = () => {
 			</div>
 		</>
 	);
-};
-
-export default LandingPage;
+}

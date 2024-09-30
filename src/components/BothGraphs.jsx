@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import TopCompanies from './TopCompanies'; // Import the TopCompanies component
 import StockGraph from './StockGraph'; // Assume you have a StockGraph component

@@ -1,0 +1,12 @@
+.nav-link:hover {
+	background-color: #161b2c;
+	border-radius: 5px;
+	color: white;
+}
+
+.sidebar {
+	background-color: #1a2035;
+	height: 100vh;
+	min-width: 14rem;
+	z-index: 1000;
+}
