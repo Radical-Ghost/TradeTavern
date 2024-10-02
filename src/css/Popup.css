@@ -1,0 +1,77 @@
+.custom-modal {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 30px;
+	max-width: 400px;
+	margin: auto;
+	position: relative;
+	z-index: 1000;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease;
+}
+
+.custom-overlay {
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 500;
+}
+
+.custom-modal h2 {
+	margin-bottom: 20px;
+	font-family: "Arial", sans-serif;
+	color: #333;
+}
+
+.custom-modal form {
+	display: flex;
+	flex-direction: column;
+}
+
+.custom-modal label {
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #555;
+}
+
+.custom-modal input {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 25px;
+	margin-bottom: 15px;
+	transition: border-color 0.3s;
+}
+
+.custom-modal input:focus {
+	border-color: #007bff;
+	outline: none;
+}
+
+.custom-modal button {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #007bff;
+	color: white;
+	cursor: pointer;
+	margin-top: 10px;
+	transition: background-color 0.3s;
+}
+
+.custom-modal button:hover {
+	background-color: #0056b3;
+}
+
+.custom-modal button[type="button"] {
+	background-color: #f44336;
+}
+
+.custom-modal button[type="button"]:hover {
+	background-color: #c62828;
+}

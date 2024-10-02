@@ -37,7 +37,7 @@ export default function LandingPage() {
 		<>
 			<div className="content" style={{ width: "100%" }}>
 				{/* Top Bar */}
-				<div className="bg-light py-2">
+				<div className="bg-light py-2 ">
 					<Container fluid>
 						<Row className="align-items-center">
 							{/* Left Column for Location Info */}
@@ -57,15 +57,17 @@ export default function LandingPage() {
 								<Nav>
 									<Nav.Link
 										onClick={handleSignupShow}
-										className="me-3">
+										className="me-3 button-in">
 										Signup
 									</Nav.Link>
 									<Nav.Link
 										onClick={handleLoginShow}
-										className="me-3">
+										className="me-3 button-in">
 										Login
 									</Nav.Link>
-									<Nav.Link href="/Home" className="me-3">
+									<Nav.Link
+										href="/home"
+										className="me-3 button-in">
 										Home
 									</Nav.Link>
 								</Nav>

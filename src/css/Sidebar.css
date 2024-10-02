@@ -1,24 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap");
 
-.nav-link:hover {
+.nav-list:hover,
+.Ham:hover {
 	background-color: #121621;
 	border-radius: 0.5rem;
 }
 
-.sidebar {
+.Ham {
+	display: none;
+	border: none;
 	background-color: #1a2035;
-	height: 100vh;
-	min-width: 14rem;
-	z-index: 1000;
 }
 
-.center-nav-link {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.logo-font {
-	font-family: "Playwrite DE Grund", cursive;
-	color: #19ff30;
+.Sidebar ul li {
+	transition: all 0.3s ease-in-out;
 }
