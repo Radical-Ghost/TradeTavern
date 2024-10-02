@@ -1,88 +1,162 @@
-import { Nav } from "react-bootstrap";
+import { Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FaHome, FaInfoCircle, FaDollarSign } from "react-icons/fa";
-import { MdOutlineDashboard, MdHelpOutline } from "react-icons/md";
-import { CgCommunity } from "react-icons/cg";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import "../css/Sidebar.css";
+import classNames from "classnames";
+import { useContext, createContext, useState, useEffect } from "react";
 
-//styles to be applied to the icons
-const iconStyle = {
-	color: "#8d9498",
-	marginTop: "6px",
-	marginRight: "0.8rem",
-	width: "2rem",
-	textAlign: "center",
-	verticalAlign: "middle",
-	float: "left",
-	fontSize: "1rem",
-	lineHeight: "1.5rem",
-};
+const SidebarContext = createContext();
 
-//styles to be applied to the text
-const textStyle = {
-	color: "#8d9498",
-	textAlign: "center",
-	verticalAlign: "middle",
-	float: "left",
-	fontWeight: "bold",
-};
+export default function Sidebar({ children }) {
+	const [expanded, setExpanded] = useState(true);
+	const [isHovered, setIsHovered] = useState(false);
 
-export default function Sidebar() {
+	const handleMouseEnter = () => {
+		setIsHovered(true);
+	};
+
+	const handleMouseLeave = () => {
+		setIsHovered(false);
+	};
+
+	const buttonStyle = {
+		backgroundColor: isHovered ? "#121621" : "transparent",
+		fontFamily: '"Playwrite DE Grund", cursive',
+		fontSize: "1.5rem",
+		fontWeight: "bold",
+		border: "none",
+		cursor: "pointer",
+		transition: "color 0.3s",
+		height: "80%",
+		marginTop: "5px",
+		alignItems: "center",
+		display: "flex",
+		justifyContent: "center",
+	};
+
 	return (
-		<>
-			<div className="sidebar d-flex flex-column justify-content-between">
-				<div className="sidebar-header">
-					{" "}
-					{/* Sidebar header */}
-					<h3 className="mt-3 text-center py-2 logo-font">
-						<Nav.Link as={Link} to="/">
+		<aside className="Sidebar">
+			<nav
+				className={`d-flex flex-column border-end shadow-sm h-100 ${
+					expanded ? "" : "collapsed"
+				}`}
+				style={{
+					color: "#8d9498",
+					backgroundColor: "#1a2035",
+					transition: "width 0.3s ease-in-out",
+					width: expanded ? "250px" : "70px",
+				}}>
+				<div
+					className="logo-ham d-flex align-items-center p-2"
+					style={{
+						justifyContent: expanded ? "space-between" : "center",
+						height: "6rem",
+					}}>
+					{expanded && (
+						<Nav.Link
+							as={Link}
+							to="/"
+							style={{
+								color: "#19ff30",
+								fontFamily: '"Playwrite DE Grund", cursive',
+								fontSize: "1.5rem",
+								padding: "0.8rem",
+								fontWeight: "bold",
+							}}>
 							TradeTavern
 						</Nav.Link>
-					</h3>
-					<Nav className="flex-column p-1">
-						{" "}
-						{/* Navigation-text-temporary */}
-						<Nav.Link as={Link} to="/home">
-							<FaHome style={iconStyle} /> {/* Home icon */}
-							<p style={textStyle}>Home</p> {/* Home text */}
-						</Nav.Link>
-						<Nav.Link as={Link} to="/dashboard">
-							<MdOutlineDashboard style={iconStyle} />{" "}
-							<p style={textStyle}>Dashboard</p>
-						</Nav.Link>
-						<Nav.Link as={Link} to="/invest">
-							<FaDollarSign style={iconStyle} />{" "}
-							<p style={textStyle}>Invest</p>
-						</Nav.Link>
-						<Nav.Link as={Link} to="/subscription">
-							<FaInfoCircle style={iconStyle} />{" "}
-							<p style={textStyle}>Subscription</p>
-						</Nav.Link>
-					</Nav>
+					)}
+					<Button
+						onClick={() => setExpanded((curr) => !curr)}
+						className="Ham"
+						style={buttonStyle}
+						size="25"
+						onMouseEnter={handleMouseEnter}
+						onMouseLeave={handleMouseLeave}>
+						{expanded ? <FaAngleLeft /> : <FaAngleRight />}
+					</Button>
 				</div>
-				<div className="sidebar-footer">
-					{" "}
-					{/* Sidebar footer */}
-					<Nav className="flex-column p-1">
-						<h5 className="mt-3 text-white text-center py-2">
-							Support
-						</h5>{" "}
-						{/* Support-text-temporary */}
-						<Nav.Link as={Link} to="/about">
-							<FaInfoCircle style={iconStyle} />{" "}
-							<p style={textStyle}>About</p>
-						</Nav.Link>
-						<Nav.Link as={Link} to="/community">
-							<CgCommunity style={iconStyle} />{" "}
-							<p style={textStyle}>Community</p>
-						</Nav.Link>
-						<Nav.Link as={Link} to="/help">
-							<MdHelpOutline style={iconStyle} />{" "}
-							<p style={textStyle}>Help</p>
-						</Nav.Link>
-					</Nav>
-				</div>
-			</div>
-		</>
+
+				<SidebarContext.Provider value={{ expanded }}>
+					<ul className="flex-1 list-unstyled">{children}</ul>
+				</SidebarContext.Provider>
+			</nav>
+		</aside>
+	);
+}
+
+export function SidebarItem({ icon, text, to, active }) {
+	const { expanded } = useContext(SidebarContext);
+	const [isHovered, setIsHovered] = useState(false);
+
+	const handleMouseEnter = () => {
+		setIsHovered(true);
+	};
+
+	const handleMouseLeave = () => {
+		setIsHovered(false);
+	};
+
+	const textStyle = {
+		marginTop: "6px",
+		color: active ? "white" : isHovered ? "white" : "#8d9498",
+		textAlign: "left",
+		fontWeight: "bold",
+		fontSize: "1.2rem",
+		transition:
+			"width 0.3s ease-in-out 0.1s, visibility 0.3s ease-in-out 0.1s",
+		width: expanded ? "auto" : "0",
+		visibility: expanded ? "visible" : "hidden",
+	};
+
+	const iconStyle = {
+		fontSize: "2rem",
+		transition: "font-size 0.3s ease-in-out, margin 0.3s ease-in-out",
+		color: active ? "#6861ce" : isHovered ? "white" : "#8d9498",
+		margin: expanded ? "0 0.8rem 0 0" : "0 auto",
+		display: "block",
+		textAlign: "center",
+	};
+
+	return (
+		<li
+			className={`position-relative d-flex align-items-center py-2 px-3 my-4 rounded cursor-pointer transition-all`}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+			style={{
+				backgroundColor: active
+					? "#121621"
+					: isHovered
+					? "#121621"
+					: "transparent",	
+				borderLeft: active ? "4px solid #6861ce" : "none",
+			}}>
+			<Nav.Link
+				as={Link}
+				to={to}
+				className="d-flex align-items-center w-100">
+				<span style={iconStyle}>{icon}</span>
+				<span
+					className={classNames("overflow-hidden", {
+						"w-52 ml-3": expanded,
+						"w-0": !expanded,
+					})}
+					style={textStyle}>
+					{text}
+				</span>
+				{!expanded && (
+					<div
+						className={classNames(
+							"position-absolute rounded px-2 py-1 ml-6 bg-light text-primary text-sm invisible opacity-20 transition-all",
+							{
+								"group-hover:visible group-hover:opacity-100 group-hover:translate-x-0":
+									!expanded,
+							}
+						)}>
+						{text}
+					</div>
+				)}
+			</Nav.Link>
+		</li>
 	);
 }

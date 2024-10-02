@@ -1,6 +1,4 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"; // Ensure to import these components
-import Sidebar from "../components/Sidebar";
-// import StockGraph from "./comp/StockGraph"; // If you need to use this later
 import BothGraphs from "../components/BothGraphs";
 import { Link } from "react-router-dom";
 
@@ -8,7 +6,6 @@ export default function Home() {
 	return (
 		<>
 			<div style={{ display: "flex", width: "100%" }}>
-				<Sidebar />
 				<div className="content" style={{ width: "100%" }}>
 					{/* Top Bar */}
 					<div

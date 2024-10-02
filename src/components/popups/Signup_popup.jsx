@@ -1,10 +1,11 @@
-import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import "../../css/Popup.css";
 import { auth } from "../../backend/Firebase"; 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"; 
 import { useNavigate } from "react-router-dom";
 
-const SignupModal = ({ show, handleClose }) => {
+export default function SignupModal({ show, handleClose }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -143,6 +144,4 @@ const SignupModal = ({ show, handleClose }) => {
 			</Modal.Body>
 		</Modal>
 	);
-};
-
-export default SignupModal;
+}
