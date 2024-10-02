@@ -1,0 +1,100 @@
+.user-main {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #333;
+    padding: 50px;
+}
+
+.user-main-h1 {
+    text-align: center;
+}
+
+.sub-plans {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.sub-plan {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sub-plan h2 {
+    color: #333;
+}
+
+.featured {
+    border: 2px solid #3498db;
+}
+
+.sub-price {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+.sub-payment {
+    margin-top: 40px;
+}
+
+.user-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.form-label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.form-button {
+    grid-column: span 2;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #2980b9;
+}
+
+.sub-guarantee {
+    margin-top: 40px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #333;
+    color: #fff;
+}
