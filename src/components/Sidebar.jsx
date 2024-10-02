@@ -54,7 +54,7 @@ export default function Sidebar() {
 							<FaDollarSign style={iconStyle} />{" "}
 							<p style={textStyle}>Invest</p>
 						</Nav.Link>
-						<Nav.Link as={Link} to="/about">
+						<Nav.Link as={Link} to="/subscription">
 							<FaInfoCircle style={iconStyle} />{" "}
 							<p style={textStyle}>Subscription</p>
 						</Nav.Link>

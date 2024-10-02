@@ -46,7 +46,7 @@ export default function LandingPage() {
 								md={6}
 								className="d-flex align-items-center">
 								<span className="me-3">+01234567890</span>
-								<span>Example@gmail.com</span>
+								<h1>Trade Trvern</h1>
 							</Col>
 
 							{/* Right Column for Navigation Links */}

@@ -10,6 +10,7 @@ import Invest from "./Invest";
 import Landing from "./Landing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Subscribe from '../pages/Subscribe'
 //import React, { useState } from 'react';
 // import LoginModal from './LoginModal';
 // import SignupModal from './components/SignupModal';
@@ -30,6 +31,8 @@ export default function App() {
 						<Route path="/invest" element={<Invest />} />
 						<Route path="/community" element={<Community />} />
 						<Route path="/help" element={<Help />} />
+						<Route path="/subscription" element={<Subscribe />} />
+
 						<Route path="/" element={<Landing />} />{" "}
 						{/* Default route */}
 					</Routes>

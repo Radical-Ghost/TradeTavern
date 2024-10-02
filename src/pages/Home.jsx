@@ -2,6 +2,7 @@ import { Container, Row, Col, Nav } from "react-bootstrap"; // Ensure to import 
 import Sidebar from "../components/Sidebar";
 // import StockGraph from "./comp/StockGraph"; // If you need to use this later
 import BothGraphs from "../components/BothGraphs";
+import { Link } from "react-router-dom";
 
 export default function Home() {
 	return (
@@ -21,7 +22,7 @@ export default function Home() {
 										Find A Location
 									</span>{" "}
 									|<span> +01234567890</span> |
-									<span> Example@gmail.com</span>
+									<h>Trade travern</h>
 								</Col>
 								<Col xs="auto">
 									<Nav>
@@ -29,6 +30,9 @@ export default function Home() {
 											Register
 										</Nav.Link>
 										<Nav.Link href="#login">Login</Nav.Link>
+										<Nav.Link href = '/'>
+											Logout
+										</Nav.Link>
 										<Nav.Link href="/dashboard">
 											My Dashboard
 										</Nav.Link>
