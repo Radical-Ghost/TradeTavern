@@ -1,13 +1,12 @@
-import Sidebar from "../components/Sidebar.jsx";
-// import Graph from './comp/StockGraph';
-
 export default function AboutUs() {
 	return (
-		<div style={{ display: "flex" }}>
-			<Sidebar />
-			<div className="content p-4 mx-4 w-100 p-0">
-				<h1>About us page</h1>
+		<>
+			<div style={{ display: "flex", width: "100%" }}>
+				<div className="content" style={{ width: "100%" }}>
+					{/* About Us content */}
+					<h1>About Us</h1>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }

@@ -1,6 +1,6 @@
-// src/components/LoginModal.jsx
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import "../../css/Popup.css";
 
 export default function LoginModal({ show, handleClose }) {
 	const [email, setEmail] = useState("");
@@ -19,7 +19,12 @@ export default function LoginModal({ show, handleClose }) {
 	};
 
 	return (
-		<Modal show={show} onHide={handleClose} centered>
+		<Modal
+			show={show}
+			onHide={handleClose}
+			centered
+			dialogClassName="custom-modal"
+			contentClassName="custom-modal">
 			<Modal.Header closeButton>
 				<Modal.Title>Login</Modal.Title>
 			</Modal.Header>
@@ -44,13 +49,16 @@ export default function LoginModal({ show, handleClose }) {
 						/>
 					</Form.Group>
 					<div className="d-flex justify-content-end mt-3">
-						<Button variant="secondary" onClick={handleClose}>
+						<Button
+							variant="secondary"
+							onClick={handleClose}
+							className="custom-modal-button">
 							Close
 						</Button>
 						<Button
 							variant="primary"
 							type="submit"
-							className="ms-2">
+							className="ms-2 custom-modal-button">
 							Login
 						</Button>
 					</div>

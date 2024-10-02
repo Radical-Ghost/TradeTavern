@@ -1,10 +1,6 @@
-import Sidebar from "../components/Sidebar";
-// import Graph from './comp/StockGraph';
-
 export default function Help() {
 	return (
 		<div style={{ display: "flex" }}>
-			<Sidebar />
 			<div
 				className="content p-4"
 				style={{

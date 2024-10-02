@@ -1,8 +1,8 @@
-// src/components/SignupModal.jsx
-import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import "../../css/Popup.css";
 
-const SignupModal = ({ show, handleClose }) => {
+export default function SignupModal({ show, handleClose }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -81,6 +81,4 @@ const SignupModal = ({ show, handleClose }) => {
 			</Modal.Body>
 		</Modal>
 	);
-};
-
-export default SignupModal;
+}
