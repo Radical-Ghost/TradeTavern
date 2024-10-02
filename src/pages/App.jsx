@@ -1,19 +1,26 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+
+//pages to route
 import Home from "./Home";
-import AboutUs from "./AboutUs";
 import Dashboard from "./Dashboard";
-import Community from "./Community";
-import Help from "./Help";
 import Invest from "./Invest";
+import Community from "./Community";
+import Subscription from "./Subscription";
+import Help from "./Help";
+import AboutUs from "./AboutUs";
 import Landing from "./Landing";
 import Sidebar from "../components/Sidebar";
 import { SidebarItem } from "../components/Sidebar";
+
+//csss
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+
+//icons for sidebar
 import { FaHome, FaInfoCircle, FaDollarSign } from "react-icons/fa";
 import { MdOutlineDashboard, MdHelpOutline } from "react-icons/md";
 import { CgCommunity } from "react-icons/cg";
-import Subscription from "./Subscription";
+
 
 const iconStyle = {
 	marginRight: "0.8rem",
@@ -98,6 +105,7 @@ export default function App() {
 						/>
 						<Route path="/about" element={<AboutUs />} />
 						<Route path="/help" element={<Help />} />
+						<Route path="/" element={<Landing />} />{" "}
 						{/* Default route */}
 					</Routes>
 				</div>
