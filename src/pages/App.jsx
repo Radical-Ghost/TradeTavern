@@ -11,6 +11,7 @@ import AboutUs from "./AboutUs";
 import Landing from "./Landing";
 import Sidebar from "../components/Sidebar";
 import { SidebarItem } from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 
 //csss
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,7 +21,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { FaHome, FaInfoCircle, FaDollarSign } from "react-icons/fa";
 import { MdOutlineDashboard, MdHelpOutline } from "react-icons/md";
 import { CgCommunity } from "react-icons/cg";
-
 
 const iconStyle = {
 	marginRight: "0.8rem",
@@ -92,22 +92,28 @@ export default function App() {
 						/>
 					</Sidebar>
 				)}
+
 				<div className="content" style={{ width: "100%" }}>
-					<Routes>
-						<Route path="/" element={<Landing />} />
-						<Route path="/home" element={<Home />} />
-						<Route path="/dashboard" element={<Dashboard />} />
-						<Route path="/invest" element={<Invest />} />
-						<Route path="/community" element={<Community />} />
-						<Route
-							path="/subscriptions"
-							element={<Subscription />}
-						/>
-						<Route path="/about" element={<AboutUs />} />
-						<Route path="/help" element={<Help />} />
-						<Route path="/" element={<Landing />} />{" "}
-						{/* Default route */}
-					</Routes>
+					{!isLandingPage && <Navbar />}
+					<div
+						className="page"
+						style={{ height: "92%", overflowY: "scroll" }}>
+						<Routes>
+							<Route path="/" element={<Landing />} />
+							<Route path="/home" element={<Home />} />
+							<Route path="/dashboard" element={<Dashboard />} />
+							<Route path="/invest" element={<Invest />} />
+							<Route path="/community" element={<Community />} />
+							<Route
+								path="/subscriptions"
+								element={<Subscription />}
+							/>
+							<Route path="/about" element={<AboutUs />} />
+							<Route path="/help" element={<Help />} />
+							<Route path="/" element={<Landing />} />{" "}
+							{/* Default route */}
+						</Routes>
+					</div>
 				</div>
 			</div>
 		</>
