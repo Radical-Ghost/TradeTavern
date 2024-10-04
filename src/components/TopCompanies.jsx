@@ -21,7 +21,7 @@ const TopCompanies = () => {
 		<Container
 			className="mt-4 scroll-container"
 			style={{
-				maxWidth: "350px",
+				width: "60%",
 				overflowY: "auto",
 				height: "541px",
 				borderRadius: "15px",
