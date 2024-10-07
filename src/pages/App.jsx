@@ -38,7 +38,7 @@ export default function App() {
 
 	return (
 		<>
-			<div style={{ display: "flex", height: "100vh" }}>
+			<div style={{ display: "flex", height: "100vh"}}>
 				{/* Conditionally render Sidebar */}
 				{!isLandingPage && (
 					<Sidebar>
@@ -93,11 +93,11 @@ export default function App() {
 					</Sidebar>
 				)}
 
-				<div className="content" style={{ width: "100%" }}>
+				<div className="content" style={{ width: "100%"}}>
 					{!isLandingPage && <Navbar />}
 					<div
 						className="page"
-						style={{ height: "92%", overflowY: "scroll" }}>
+						style={{ height: "92%", overflowY: "scroll"}}>
 						<Routes>
 							<Route path="/" element={<Landing />} />
 							<Route path="/home" element={<Home />} />

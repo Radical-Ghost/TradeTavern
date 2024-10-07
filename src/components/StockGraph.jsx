@@ -25,10 +25,10 @@ const StockGraph = () => {
 		<div
 			className="bg-light p-3"
 			style={{
-				marginLeft: "30px",
+				marginLeft: "3%",
 				borderRadius: "15px",
 				marginTop: "24px",
-				width: "850px",
+				width: "80%",
 			}}>
 			<h3 className="text-center">Stock Price Over Time</h3>
 			<ResponsiveContainer width="100%" height={470}>
