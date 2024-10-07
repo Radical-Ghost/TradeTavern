@@ -51,8 +51,8 @@
     padding: 0 10px;
     /* Padding for the button */
     font-size: 1rem;
-    background-color: #ffffff00;
-    color: #000000;
+    background-color: transparent;
+    color: #121621;
     border: none;
     border-radius: 5px;
     /* Rounded corners */
@@ -89,7 +89,9 @@
     /* Positioning relative to profile link */
     align-self: left;
     /* Center it horizontally */
-    transform: translateX(-80%);
+    transform: translate(860%, 95%);
+
+
 
     /* Adjust for centering */
     background-color: white;
@@ -110,7 +112,7 @@
 }
 
 /* Show tooltip when hovering over the profile link */
-.profile-link:hover+.tooltip {
+.profile:hover+.tooltip {
     opacity: 1;
     /* Make it visible */
     visibility: visible;

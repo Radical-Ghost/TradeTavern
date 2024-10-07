@@ -39,12 +39,12 @@ export default function Navbar() {
                     </div>
                     <span className="subs-type">Tier - 3 </span>    
                 </div>
-				<Link>
+				<Link to="/dashboard">
 					<img src={Bckimage} className="profile-pic" alt="profile-pic" />
 				</Link>
 			</div>
 
-            {/* <div className="tooltip">kamran dhoaunkar<br/>kdhopaunkar@gmail.com</div> */}
+            <div className="tooltip">kamran dhoaunkar<br/>kdhopaunkar@gmail.com</div>
         </aside>
     );
 }
