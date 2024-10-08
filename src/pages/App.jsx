@@ -13,7 +13,7 @@ import Sidebar from "../components/Sidebar";
 import { SidebarItem } from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
-//csss
+//css
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -115,7 +115,7 @@ export default function App() {
 							/>
 							<Route path="/about" element={<AboutUs />} />
 							<Route path="/help" element={<Help />} />
-							<Route path="/" element={<Landing />} />{" "}
+							<Route path="/" element={<Landing />} />
 							{/* Default route */}
 						</Routes>
 					</div>
