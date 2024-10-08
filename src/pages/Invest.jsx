@@ -1,12 +1,12 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 export default function Invest() {
-	return (
-		<>
-			<div style={{ display: "flex", width: "100%" }}>
-				<div className="content" style={{ width: "100%" }}>
-					{/* About Us content */}
-					<h1>Invest</h1>
-				</div>
-			</div>
-		</>
-	);
+ const query = new URLSearchParams(useLocation().search).get('query');
+
+    return (
+        <div>
+            <h1>Invest Page</h1>
+            {query ? <p>Searching for: {query}</p> : <p>No search term provided.</p>}
+        </div>
+    );
 }

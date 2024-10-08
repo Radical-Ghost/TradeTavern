@@ -1,21 +1,31 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-import { getAuth } from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth";
+
+const {
+	VITE_FIREBASE_API_KEY,
+	VITE_FIREBASE_AUTH_DOMAIN,
+	VITE_FIREBASE_PROJECT_ID,
+	VITE_FIREBASE_STORAGE_BUCKET,
+	VITE_FIREBASE_MESSAGING_SENDER_ID,
+	VITE_FIREBASE_APP_ID,
+	VITE_FIREBASE_MEASUREMENT_ID,
+} = import.meta.env;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAUkDSoey1iKIcXomMo_hMfMmQ3I9brbgA",
-  authDomain: "trade-travern.firebaseapp.com",
-  projectId: "trade-travern",
-  storageBucket: "trade-travern.appspot.com",
-  messagingSenderId: "131451221261",
-  appId: "1:131451221261:web:efbd2c7d45163f49752c44",
-  measurementId: "G-3PBX4CXY0N"
+	apiKey: VITE_FIREBASE_API_KEY,
+	authDomain: VITE_FIREBASE_AUTH_DOMAIN,
+	projectId: VITE_FIREBASE_PROJECT_ID,
+	storageBucket: VITE_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: VITE_FIREBASE_MESSAGING_SENDER_ID,
+	appId: VITE_FIREBASE_APP_ID,
+	measurementId: VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app); 
+const storage = getStorage(app);
 const auth = getAuth(app);
 
 export { app, db, storage, auth };
