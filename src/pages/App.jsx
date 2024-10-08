@@ -77,7 +77,12 @@ export default function App() {
 							to="/subscriptions"
 							active={location.pathname === "/subscriptions"}
 						/>
-						<hr className="my-3" />
+						<div
+							className="break-line"
+							style={{
+								backgroundColor: "#8d9498",
+								height: ".2rem",
+							}}></div>
 						<SidebarItem
 							icon={<MdHelpOutline size={25} style={iconStyle} />}
 							text="Help"
