@@ -45,8 +45,16 @@ export default function LandingPage() {
 								xs={12}
 								md={6}
 								className="d-flex align-items-center">
-								<span className="me-3">+01234567890</span>
-								<h1>Trade Trvern</h1>
+								<h1
+									style={{
+										color: "#1d1d26",
+										fontFamily:
+											'"Playwrite DE Grund", cursive',
+										fontSize: "2.2rem",
+										fontWeight: "bold",
+									}}>
+									TradeTavern
+								</h1>
 							</Col>
 
 							{/* Right Column for Navigation Links */}
@@ -64,11 +72,6 @@ export default function LandingPage() {
 										onClick={handleLoginShow}
 										className="me-3 button-in">
 										Login
-									</Nav.Link>
-									<Nav.Link
-										href="/home"
-										className="me-3 button-in">
-										Home
 									</Nav.Link>
 								</Nav>
 								<LoginModal

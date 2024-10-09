@@ -21,12 +21,12 @@ const TopCompanies = () => {
 		<Container
 			className="mt-4 scroll-container"
 			style={{
-				maxWidth: "350px",
+				width: "60%",
 				overflowY: "auto",
 				height: "541px",
 				borderRadius: "15px",
 				backgroundColor: "lavender",
-				marginRight: "10px",
+				marginRight: "0%",
 			}}>
 			<h4>Top 5 Companies</h4>
 			<Row>
