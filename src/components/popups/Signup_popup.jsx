@@ -58,8 +58,10 @@ export default function SignupModal({ show, handleClose }) {
 	};
 
 	return (
-		<Modal show={show} onHide={handleClose} centered>
+		<Modal show={show} onHide={handleClose} centered dialogClassName="custom-modall"
+			contentClassName="custom-modal">
 			<Modal.Header closeButton>
+				 
 				<Modal.Title>{isSignUp ? "Sign Up" : "Sign In"}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
@@ -128,8 +130,8 @@ export default function SignupModal({ show, handleClose }) {
 						</Button>
 					</div>
 				</Form>
-				<div className="mt-3 text-center">
-					<Button variant="link" onClick={() => setIsSignUp(!isSignUp)}>
+				<div className="text-center mt-3">
+					<Button variant="lin" onClick={() => setIsSignUp(!isSignUp)} className="w-100"> 
 						{isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
 					</Button>
 				</div>

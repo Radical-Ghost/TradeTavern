@@ -47,9 +47,9 @@ export default function LoginModal({ show, handleClose }) {
 			show={show}
 			onHide={handleClose}
 			centered
-			dialogClassName="custom-modal"
+			dialogClassName="custom-modall"
 			contentClassName="custom-modal">
-			<Modal.Header closeButton>
+			<Modal.Header closeButton >
 				<Modal.Title>Login</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>

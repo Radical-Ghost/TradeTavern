@@ -4,6 +4,8 @@ import Bckimage from "../images/background.jpg"; // Import the background image
 import "../css/Landing.css"; // Custom CSS for animations and design enhancements
 import LoginModal from "../components/popups/Login_popup.jsx";
 import SignupModal from "../components/popups/Signup_popup.jsx";
+import AdhaarModal from "../components/popups/Adhaar_popup.jsx";
+
 import { useState } from "react";
 
 function useCustomInView() {
@@ -14,6 +16,7 @@ function useCustomInView() {
 }
 
 export default function LandingPage() {
+
 	// Define animation triggers for each section using the custom hook
 	const [heroRef, heroInView] = useCustomInView();
 	const [howItWorksRef, howItWorksInView] = useCustomInView();
@@ -23,9 +26,10 @@ export default function LandingPage() {
 	const [testimonialsRef, testimonialsInView] = useCustomInView();
 	const [ctaRef, ctaInView] = useCustomInView();
 
-	// This is for popup login page
+	// State for popup modals
 	const [showLogin, setShowLogin] = useState(false);
 	const [showSignup, setShowSignup] = useState(false);
+	const [showAdhaar, setShowAdhaar] = useState(false); // State for Aadhaar modal
 
 	const handleLoginShow = () => setShowLogin(true);
 	const handleLoginClose = () => setShowLogin(false);
@@ -33,12 +37,16 @@ export default function LandingPage() {
 	const handleSignupShow = () => setShowSignup(true);
 	const handleSignupClose = () => setShowSignup(false);
 
+	const handleAdhaarShow = () => setShowAdhaar(true); // Show Aadhaar modal
+	const handleAdhaarClose = () => setShowAdhaar(false); // Close Aadhaar modal
+
+
 	return (
 		<>
-			<div className="content" style={{ width: "100%" }}>
+			<div className="content" style={{ width: "100%"}}>
 				{/* Top Bar */}
-				<div className="bg-light py-2 ">
-					<Container fluid>
+				<div className="bg-light p " style={{ height:"3.1rem",backgroundColor:"#1a2035"}}>
+					<Container fluid style={{backgroundColor:"#1a2035"}}>
 						<Row className="align-items-center">
 							{/* Left Column for Location Info */}
 							<Col
@@ -47,7 +55,7 @@ export default function LandingPage() {
 								className="d-flex align-items-center">
 								<h1
 									style={{
-										color: "#1d1d26",
+										color: "#8d9498",
 										fontFamily:
 											'"Playwrite DE Grund", cursive',
 										fontSize: "2.2rem",
@@ -63,14 +71,17 @@ export default function LandingPage() {
 								md={6}
 								className="d-flex justify-content-md-end justify-content-center mt-2 mt-md-0">
 								<Nav>
+									<Nav.Link onClick={handleAdhaarShow} className="me-3 button-in" style={{ color: "white" }}>
+										Aadhaar
+									</Nav.Link>
 									<Nav.Link
 										onClick={handleSignupShow}
-										className="me-3 button-in">
+										className="me-3 button-in" style={{color:"white"}}>
 										Signup
 									</Nav.Link>
 									<Nav.Link
 										onClick={handleLoginShow}
-										className="me-3 button-in">
+										className="me-3 button-in" style={{color:"white"}}>
 										Login
 									</Nav.Link>
 								</Nav>
@@ -82,6 +93,7 @@ export default function LandingPage() {
 									show={showSignup}
 									handleClose={handleSignupClose}
 								/>
+								<AdhaarModal show={showAdhaar} handleClose={handleAdhaarClose} /> {/* Aadhaar modal */}
 							</Col>
 						</Row>
 					</Container>
