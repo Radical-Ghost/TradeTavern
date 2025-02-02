@@ -57,21 +57,43 @@
 	padding: 10px;
 	border: none;
 	border-radius: 5px;
-	background-color: #007bff;
-	color: white;
+	border-color: #000000;
+	background-color: #ffffff;
+	color: rgb(0, 0, 0);
 	cursor: pointer;
 	margin-top: 10px;
 	transition: background-color 0.3s;
 }
 
 .custom-modal button:hover {
-	background-color: #0056b3;
+	background-color: #252626;
 }
 
-.custom-modal button[type="button"] {
-	background-color: #f44336;
-}
 
 .custom-modal button[type="button"]:hover {
-	background-color: #c62828;
+	background-color: #252626;
+	color: #fff;
+}
+
+.custom-modal .modal-header .btn-close {
+    background-color: #ffffff; /* Customize background color */
+    border-radius: 50%; /* Make it circular, if needed */
+    color: #fff; /* Customize the text color */
+    border: none; /* Remove the border */
+    padding: 8px; /* Adjust padding */
+    transition: background-color 0.3s ease; /* Add a smooth transition */
+}
+
+.custom-modal .modal-header .btn-close:hover {
+    background-color: #c62828; /* Change hover effect */
+}
+
+
+.custom-link-button {
+  color: inherit;
+  text-decoration: none;
+}
+
+.custom-link-button:hover {
+  color: rgb(255, 255, 255); /* Text turns blue on hover */
 }

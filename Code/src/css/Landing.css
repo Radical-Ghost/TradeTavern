@@ -44,6 +44,8 @@
 .custom-button,
 .service-card,
 .testimonial-card {
+	background-color: #1a092a;
+
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -69,12 +71,12 @@
 
 /* Button styles */
 .custom-button {
-	transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+	transition: background-color 0.3s ease, color  0.3s ease, transform 0.3s ease;
 	/* Smooth transitions for background color, text color, and transform */
 }
 
 .custom-button:hover {
-	background-color: #28a745;
+	background-color: #1a092a;
 	/* Change background color on hover */
 	color: #ffffff;
 	/* Change text color on hover */
@@ -83,7 +85,7 @@
 }
 
 .button-in:hover {
-	background-color: #28a745;
+	background-color: #1a092a;
 	color: white;
-	border: 0.8px solid #28a745;
+	/* border: 0.8px solid #28a745; */
 }

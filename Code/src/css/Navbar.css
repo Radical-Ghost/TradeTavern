@@ -1,0 +1,168 @@
+.Navbar {
+    width: 100%;
+    height: 8vh;
+    background-color: #1a2035;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.8rem 0 0.8rem;
+    position: relative;
+}
+
+.search-container {
+    display: flex;
+    height: 70%;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+    position: relative;
+}
+
+/* Input field */
+.search-bar-input {
+    flex-grow: 1;
+    /* Make input take up available space */
+    height: 80%;
+    /* Set height to 100% of the container */
+    padding: 0 3%;
+    /* Add padding on left and right */
+    padding-right: 40px;
+    /* Space for the button */
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: width 0.3s ease;
+    /* Smooth width adjustment */
+}
+
+/* Button */
+.search-bar-button {
+    position: absolute;
+    /* Positioning inside the search bar */
+    right: 10px;
+    /* Space from the right edge */
+    top: 50%;
+    /* Center vertically */
+    transform: translateY(-50%);
+    /* Adjust for centering */
+    height: 80%;
+    /* Match input height, slightly smaller */
+    padding: 0 10px;
+    /* Padding for the button */
+    font-size: 1rem;
+    background-color: transparent;
+    color: #121621;
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar-button:hover {
+    background-color: #121621;
+    /* Hover color for the button */
+}
+/* Profile link */
+.profile
+{
+    display: flex;
+    align-self: right;
+    right: 1%;
+    color: aliceblue;
+}
+
+/* Profile pic styling */
+.profile-pic {
+    margin-top: 0.1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* Circular profile picture */
+    object-fit: cover;
+}
+.tooltip {
+    height: auto;
+    width: max-content;
+    position: absolute;
+    /* Positioning relative to profile link */
+    align-self: left;
+    /* Center it horizontally */
+    transform: translate(860%, 95%);
+
+
+
+    /* Adjust for centering */
+    background-color: white;
+    /* Background color */
+    border: 1px solid #ccc;
+    /* Border */
+    padding: 10px;
+    /* Padding */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Shadow for depth */
+    opacity: 0;
+    /* Initially hidden */
+    visibility: hidden;
+    /* Ensure it doesn't take up space */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show tooltip when hovering over the profile link */
+.profile:hover+.tooltip {
+    opacity: 1;
+    /* Make it visible */
+    visibility: visible;
+    /* Ensure it takes up space */
+}
+
+.details{
+    margin-right: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.1rem;
+    align-items: space-between;
+}
+
+.details-child{
+    justify-self: right;
+}
+
+.divider{
+    background-color: white;
+    height: 0.1rem;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        width: 90%;
+    }
+
+    .search-bar-input {
+        font-size: 0.9rem;
+    }
+
+    .search-bar-button {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        width: 95%;
+
+    }
+
+    .search-bar-input {
+        font-size: 0.85rem;
+    }
+
+    .search-bar-button {
+        font-size: 0.85rem;
+    }
+}

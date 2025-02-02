@@ -6,10 +6,10 @@ const YourMainComponent = () => {
   return (
     <Row>
       <Col md={8}>
-        <StockGraph /> {/* Your stock graph component */}
+        <StockGraph /> Your stock graph component
       </Col>
       <Col md={4}>
-        <TopCompanies /> {/* Your TopCompanies component */}
+        {/* <TopCompanies /> Your TopCompanies component */}
       </Col>
     </Row>
   );
