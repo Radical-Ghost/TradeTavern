@@ -1,8 +1,10 @@
+.gitignore
 .vscode
 *.log
 
-Code/node_modules
-Code/.env
-Code/trade-travern-firebase-adminsdk-qsmh9-cdc1eac9f4.json
+node_modules
+.env
+trade-travern-firebase-adminsdk-qsmh9-cdc1eac9f4.json
 
 Test
+node_modules
