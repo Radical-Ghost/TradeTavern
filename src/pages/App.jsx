@@ -1,6 +1,8 @@
 
-import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+
+
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +18,8 @@ import Landing from "./Landing";
 import Sidebar from "../components/Sidebar";
 import { SidebarItem } from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import StocksDetail from "../pages/StocksDetail"
+
 
 // CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,6 +31,7 @@ import { MdOutlineDashboard, MdHelpOutline } from "react-icons/md";
 import { CgCommunity } from "react-icons/cg";
 
 import { auth } from "../backend/Firebase"; // Firebase auth import
+import StockDetail from "./StocksDetail";
 
 const iconStyle = {
   marginRight: "0.8rem",
@@ -39,93 +44,95 @@ const iconStyle = {
 };
 
 export default function App() {
+  const [authLoading, setAuthLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null); // Track authenticated user
   const location = useLocation();
   const navigate = useNavigate();
   const isLandingPage = location.pathname === "/";
 
-
   // Check if the user is authenticated and redirect if not
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        // Redirect to login if the user is not logged in
-        navigate("/");
-      }
+      setCurrentUser(user);
+      setAuthLoading(false); // Stop loading after auth check
     });
     return () => unsubscribe(); // Cleanup the listener
-  }, [navigate]);
+  }, []);
 
   // Private route component
   const PrivateRoute = ({ element }) => {
-    return auth.currentUser ? element : navigate("/");
+    if (authLoading) return null; // Show nothing until auth state is determined
+    return currentUser ? element : <Navigate to="/" replace />; // Redirect to landing page if not authenticated
   };
 
   return (
     <>
       <div style={{ display: "flex", height: "100vh" }}>
         {/* Conditionally render Sidebar */}
-        {!isLandingPage && (
+        {!isLandingPage && currentUser && (
           <Sidebar>
             <SidebarItem
               icon={<FaHome size={25} style={iconStyle} />}
               text="Home"
-              to={`/${auth.currentUser.uid}/home`} 
+              to={`/${currentUser?.uid}/home`}
               active={location.pathname.includes("/home")}
             />
             <SidebarItem
               icon={<MdOutlineDashboard size={25} style={iconStyle} />}
               text="Dashboard"
-              to={`/${auth.currentUser.uid}/dashboard`}
+              to={`/${currentUser?.uid}/dashboard`}
               active={location.pathname.includes("/dashboard")}
             />
             <SidebarItem
-              icon={<MdOutlineDashboard size={25} style={iconStyle} />}
+              icon={<FaDollarSign size={25} style={iconStyle} />}
               text="Invest"
-              to={`/${auth.currentUser.uid}/invest`}
+              to={`/${currentUser?.uid}/invest`}
               active={location.pathname.includes("/invest")}
             />
             <SidebarItem
-              icon={<MdOutlineDashboard size={25} style={iconStyle} />}
+              icon={<CgCommunity size={25} style={iconStyle} />}
               text="Community"
-              to={`/${auth.currentUser.uid}/community`}
+              to={`/${currentUser?.uid}/community`}
               active={location.pathname.includes("/community")}
             />
             <SidebarItem
-              icon={<MdOutlineDashboard size={25} style={iconStyle} />}
+              icon={<FaDollarSign size={25} style={iconStyle} />}
               text="Subscriptions"
-              to={`/${auth.currentUser.uid}/subscriptions`}
+              to={`/${currentUser?.uid}/subscriptions`}
               active={location.pathname.includes("/subscriptions")}
             />
             <hr className="my-3" />
             <SidebarItem
-              icon={<MdOutlineDashboard size={25} style={iconStyle} />}
+              icon={<MdHelpOutline size={25} style={iconStyle} />}
               text="Help"
-              to={`/${auth.currentUser.uid}/help`}
+              to={`/${currentUser?.uid}/help`}
               active={location.pathname.includes("/help")}
             />
             <SidebarItem
-              icon={<MdOutlineDashboard size={25} style={iconStyle} />}
+              icon={<FaInfoCircle size={25} style={iconStyle} />}
               text="About"
-              to={`/${auth.currentUser.uid}/about`}
+              to={`/${currentUser?.uid}/about`}
               active={location.pathname.includes("/about")}
             />
           </Sidebar>
-          )}
+        )}
 
         <div className="content" style={{ width: "100%" }}>
-          {!isLandingPage && <Navbar />}
-          <div
-            className="page"
-            style={{ height: "92%", overflowY: "scroll" }}>
+          {/* Pass authenticated user to Navbar */}
+          {!isLandingPage && <Navbar currentUser={currentUser} />}
+          <div className="page" style={{ height: "92%", overflowY: "scroll" }}>
             <Routes>
               <Route path="/" element={<Landing />} />
-              <Route path="/:uid/home" element={<PrivateRoute element={<Home />} />} /> 
+              <Route path="/:uid/home" element={<PrivateRoute element={<Home />} />} />
               <Route path="/:uid/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
               <Route path="/:uid/invest" element={<PrivateRoute element={<Invest />} />} />
               <Route path="/:uid/community" element={<PrivateRoute element={<Community />} />} />
               <Route path="/:uid/subscriptions" element={<PrivateRoute element={<Subscription />} />} />
               <Route path="/:uid/about" element={<PrivateRoute element={<AboutUs />} />} />
-              <Route path="/:uid/help" element={<PrivateRoute element={<Help /> } />} />
+              <Route path="/:uid/help" element={<PrivateRoute element={<Help />} />} />
+              <Route path="/StocksDetail" element={<PrivateRoute element={<StocksDetail/>} />} />
+
+              <Route path="*" element={<Navigate to="/" />} /> {/* Catch-all route for invalid paths */}
             </Routes>
           </div>
         </div>
