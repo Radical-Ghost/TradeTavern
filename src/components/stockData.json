@@ -1,0 +1,56 @@
+{
+    "topCompanies": [
+        { "name": "Apple Inc.", "symbol": "AAPL", "price": "$175" },
+        { "name": "Microsoft Corp.", "symbol": "MSFT", "price": "$350" },
+        { "name": "Google LLC", "symbol": "GOOGL", "price": "$2800" },
+        { "name": "Amazon.com Inc.", "symbol": "AMZN", "price": "$3300" },
+        { "name": "Tesla Inc.", "symbol": "TSLA", "price": "$800" }
+    ],
+    "stockDataSet": {
+        "AAPL": [
+            { "date": "2024-09-19", "price": 175 },
+            { "date": "2024-09-20", "price": 177 },
+            { "date": "2024-09-21", "price": 174 },
+            { "date": "2024-09-22", "price": 176 },
+            { "date": "2024-09-23", "price": 180 },
+            { "date": "2024-09-24", "price": 178 },
+            { "date": "2024-09-25", "price": 179 }
+        ],
+        "MSFT": [
+            { "date": "2024-09-19", "price": 350 },
+            { "date": "2024-09-20", "price": 352 },
+            { "date": "2024-09-21", "price": 349 },
+            { "date": "2024-09-22", "price": 351 },
+            { "date": "2024-09-23", "price": 355 },
+            { "date": "2024-09-24", "price": 353 },
+            { "date": "2024-09-25", "price": 354 }
+        ],
+        "GOOGL": [
+            { "date": "2024-09-19", "price": 2800 },
+            { "date": "2024-09-20", "price": 2810 },
+            { "date": "2024-09-21", "price": 2790 },
+            { "date": "2024-09-22", "price": 2820 },
+            { "date": "2024-09-23", "price": 2830 },
+            { "date": "2024-09-24", "price": 2840 },
+            { "date": "2024-09-25", "price": 2850 }
+        ],
+        "AMZN": [
+            { "date": "2024-09-19", "price": 3300 },
+            { "date": "2024-09-20", "price": 3310 },
+            { "date": "2024-09-21", "price": 3290 },
+            { "date": "2024-09-22", "price": 3320 },
+            { "date": "2024-09-23", "price": 3330 },
+            { "date": "2024-09-24", "price": 3340 },
+            { "date": "2024-09-25", "price": 3350 }
+        ],
+        "TSLA": [
+            { "date": "2024-09-19", "price": 800 },
+            { "date": "2024-09-20", "price": 805 },
+            { "date": "2024-09-21", "price": 795 },
+            { "date": "2024-09-22", "price": 810 },
+            { "date": "2024-09-23", "price": 820 },
+            { "date": "2024-09-24", "price": 825 },
+            { "date": "2024-09-25", "price": 830 }
+        ]
+    }
+}

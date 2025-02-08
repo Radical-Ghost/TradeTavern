@@ -132,4 +132,3 @@ export default function LoginModal({ show, handleClose }) {
     </Modal>
   );
 }
-
