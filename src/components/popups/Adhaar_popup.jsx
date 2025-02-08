@@ -1,55 +1,26 @@
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import "../../css/Popup.css";
-import { db } from "../../backend/Firebase"; // Import Firestore
-import { doc, setDoc } from "firebase/firestore"; // Firestore methods
-import { getAuth } from "firebase/auth"; // Import Auth
 
 export default function AadhaarModal({ show, handleClose }) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [aadhaar, setAadhaar] = useState("");
     const [pan, setPan] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Get current authenticated user
-        const auth = getAuth();
-        const user = auth.currentUser;
-
-        if (!user) {
-            console.error("No user is currently authenticated.");
-            alert("You must be signed in to submit your details.");
-            return;
-        }
-
-        const uid = user.uid;  // Use authenticated user's uid
-
-        try {
-            // Save user info in Firestore under user/{uid}
-            await setDoc(doc(db, "user", uid), {
-                firstName,
-                lastName,
-                aadhaar,
-                pan,
-                email: user.email, // Automatically fetch and save the user's email
-            });
-
-            console.log("User data successfully saved to Firestore!");
-
-            // Clear form fields after submission
-            setFirstName("");
-            setLastName("");
-            setAadhaar("");
-            setPan("");
-
-            // Close the modal
-            handleClose();
-        } catch (error) {
-            console.error("Error saving user data to Firestore:", error.message, error.code);
-            alert("Failed to save your details. Please try again.");
-        }
+        // You can add logic here to handle form submission
+        console.log("Submitted Info:", { email, name, aadhaar, pan });
+        
+        // Clear the form fields after submission
+        setEmail("");
+        setName("");
+        setAadhaar("");
+        setPan("");
+        
+        // Close the modal
+        handleClose();
     };
 
     return (
@@ -64,21 +35,21 @@ export default function AadhaarModal({ show, handleClose }) {
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formFirstName">
-                        <Form.Label>First Name:</Form.Label>
+                    <Form.Group controlId="formEmail">
+                        <Form.Label>Email ID:</Form.Label>
                         <Form.Control
-                            type="text"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </Form.Group>
-                    <Form.Group controlId="formLastName">
-                        <Form.Label>Last Name:</Form.Label>
+                    <Form.Group controlId="formName">
+                        <Form.Label>Name:</Form.Label>
                         <Form.Control
                             type="text"
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             required
                         />
                     </Form.Group>

@@ -15,6 +15,8 @@ import Sidebar from "../components/Sidebar";
 import { SidebarItem } from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
+import StocksDetail from "../pages/StocksDetail";
+
 // CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -24,6 +26,7 @@ import { FaHome, FaInfoCircle, FaDollarSign } from "react-icons/fa";
 import { MdOutlineDashboard, MdHelpOutline } from "react-icons/md";
 
 import { auth } from "../backend/Firebase"; // Firebase auth import
+import StockDetail from "./StocksDetail";
 
 const iconStyle = {
 	marginRight: "0.8rem",
@@ -36,45 +39,37 @@ const iconStyle = {
 };
 
 export default function App() {
+	const [authLoading, setAuthLoading] = useState(true);
+	const [currentUser, setCurrentUser] = useState(null); // Track authenticated user
 	const location = useLocation();
 	const navigate = useNavigate();
 	const isLandingPage = location.pathname === "/";
 
-	const [authState, setAuthState] = useState({
-		loading: true,
-		user: null,
-	});
-
 	// Check if the user is authenticated and redirect if not
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
-			setAuthState({ loading: false, user });
-			if (!user) {
-				// Redirect to login if the user is not logged in
-				navigate("/");
-			}
+			setCurrentUser(user);
+			setAuthLoading(false); // Stop loading after auth check
 		});
 		return () => unsubscribe(); // Cleanup the listener
-	}, [navigate]);
+	}, []);
 
 	// Private route component
 	const PrivateRoute = ({ element }) => {
-		if (authState.loading) {
-			return <div>Loading...</div>; // Show a loading indicator while checking auth state
-		}
-		return authState.user ? element : <Navigate to="/" />;
+		if (authLoading) return null; // Show nothing until auth state is determined
+		return currentUser ? element : <Navigate to="/" replace />; // Redirect to landing page if not authenticated
 	};
 
 	return (
 		<>
 			<div style={{ display: "flex", height: "100vh" }}>
 				{/* Conditionally render Sidebar */}
-				{!isLandingPage && authState.user && (
+				{!isLandingPage && currentUser && (
 					<Sidebar>
 						<SidebarItem
 							icon={<FaHome size={25} style={iconStyle} />}
 							text="Home"
-							to={`/${authState.user.uid}/home`}
+							to={`/${currentUser?.uid}/home`}
 							active={location.pathname.includes("/home")}
 						/>
 						<SidebarItem
@@ -85,61 +80,42 @@ export default function App() {
 								/>
 							}
 							text="Dashboard"
-							to={`/${authState.user.uid}/dashboard`}
+							to={`/${currentUser?.uid}/dashboard`}
 							active={location.pathname.includes("/dashboard")}
 						/>
 						<SidebarItem
-							icon={
-								<MdOutlineDashboard
-									size={25}
-									style={iconStyle}
-								/>
-							}
+							icon={<FaDollarSign size={25} style={iconStyle} />}
 							text="Invest"
-							to={`/${authState.user.uid}/invest`}
+							to={`/${currentUser?.uid}/invest`}
 							active={location.pathname.includes("/invest")}
 						/>
 						<SidebarItem
-							icon={
-								<MdOutlineDashboard
-									size={25}
-									style={iconStyle}
-								/>
-							}
+							icon={<FaDollarSign size={25} style={iconStyle} />}
 							text="Subscriptions"
-							to={`/${authState.user.uid}/subscriptions`}
+							to={`/${currentUser?.uid}/subscriptions`}
 							active={location.pathname.includes(
 								"/subscriptions"
 							)}
 						/>
 						<hr className="my-3" />
 						<SidebarItem
-							icon={
-								<MdOutlineDashboard
-									size={25}
-									style={iconStyle}
-								/>
-							}
+							icon={<MdHelpOutline size={25} style={iconStyle} />}
 							text="Help"
-							to={`/${authState.user.uid}/help`}
+							to={`/${currentUser?.uid}/help`}
 							active={location.pathname.includes("/help")}
 						/>
 						<SidebarItem
-							icon={
-								<MdOutlineDashboard
-									size={25}
-									style={iconStyle}
-								/>
-							}
+							icon={<FaInfoCircle size={25} style={iconStyle} />}
 							text="About"
-							to={`/${authState.user.uid}/about`}
+							to={`/${currentUser?.uid}/about`}
 							active={location.pathname.includes("/about")}
 						/>
 					</Sidebar>
 				)}
 
 				<div className="content" style={{ width: "100%" }}>
-					{!isLandingPage && authState.user && <Navbar />}
+					{/* Pass authenticated user to Navbar */}
+					{!isLandingPage && <Navbar currentUser={currentUser} />}
 					<div
 						className="page"
 						style={{ height: "92%", overflowY: "scroll" }}>
@@ -173,6 +149,14 @@ export default function App() {
 								path="/:uid/help"
 								element={<PrivateRoute element={<Help />} />}
 							/>
+							<Route
+								path="/StocksDetail"
+								element={
+									<PrivateRoute element={<StocksDetail />} />
+								}
+							/>
+							<Route path="*" element={<Navigate to="/" />} />{" "}
+							{/* Catch-all route for invalid paths */}
 						</Routes>
 					</div>
 				</div>
