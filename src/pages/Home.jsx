@@ -11,9 +11,6 @@ export default function Home() {
 			<div style={{gridColumn:"2" , gridRow:'1/3'}}>
 				<TopCompanies />
 			</div>
-			
-			
 		</div>
-		
 	);
 }

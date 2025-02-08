@@ -1,7 +1,7 @@
 {
   "name": "tradetavern",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,14 +12,17 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "child_process": "^1.0.2",
     "classnames": "^2.5.1",
     "firebase": "^10.14.0",
+    "firebase-functions": "^6.2.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-intersection-observer": "^9.13.1",
     "react-router-dom": "^6.26.2",
+    "react-spinners": "^0.15.0",
     "recharts": "^2.12.7",
     "tailwindcss": "^3.4.13"
   },
@@ -28,7 +31,8 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^9.9.0",
+    "eslint": "^9.18.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
