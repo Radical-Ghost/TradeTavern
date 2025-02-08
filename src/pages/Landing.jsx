@@ -71,7 +71,9 @@ export default function LandingPage() {
 								md={6}
 								className="d-flex justify-content-md-end justify-content-center mt-2 mt-md-0">
 								<Nav>
-									
+									<Nav.Link onClick={handleAdhaarShow} className="me-3 button-in" style={{ color: "white" }}>
+										Aadhaar
+									</Nav.Link>
 									<Nav.Link
 										onClick={handleSignupShow}
 										className="me-3 button-in" style={{color:"white"}}>
@@ -91,7 +93,7 @@ export default function LandingPage() {
 									show={showSignup}
 									handleClose={handleSignupClose}
 								/>
-								
+								<AdhaarModal show={showAdhaar} handleClose={handleAdhaarClose} /> {/* Aadhaar modal */}
 							</Col>
 						</Row>
 					</Container>
@@ -104,21 +106,24 @@ export default function LandingPage() {
 						heroInView ? "animate-fade-in" : ""
 					}`}
 					style={{
-						backgroundImage: `url('https://img.freepik.com/free-photo/glowing-computer-monitor-displays-financial-figures-trading-generated-by-ai_188544-22628.jpg?t=st=1728547269~exp=1728550869~hmac=a035170b692653cca81a92c1dd0647fe91826743bc2fac4fca2419de81c0f55c&w=1060')`,
+						backgroundImage: `url('${Bckimage}')`,
 						backgroundSize: "cover",
 						padding: "100px 0",
 					}}>
 					<Container>
-						<h1 className="mb-4">WELCOME TO TradeTavern</h1>
-						<h2 className="mb-3">
-						Invest Smarter with AI-Powered Predictions!
-										</h2>
-						<h2 className="mb-3">Let Machine Learning Boost Your Profits!</h2>
+						<h2 className="mb-4">WELCOME TO STOCKER</h2>
+						<h1 className="mb-4">
+							INVEST YOUR MONEY WITH HIGHER RETURNS
+						</h1>
+						<p className="mb-4">
+							Lorem Ipsum is simply dummy text of the printing and
+							typesetting industry.
+						</p>
 						<div className="d-flex justify-content-center flex-wrap">
 							<Button
 								variant="light"
 								className="me-3 custom-button">
-								About us
+								Watch Video
 							</Button>
 							<Button
 								variant="success"
