@@ -18,6 +18,8 @@ import Landing from "./Landing";
 import Sidebar from "../components/Sidebar";
 import { SidebarItem } from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+
+
 import StocksDetail from "../pages/StocksDetail"
 
 
@@ -67,7 +69,7 @@ export default function App() {
 
   return (
     <>
-      <div style={{ display: "flex", height: "100vh" }}>
+      <div style={{ display: "flex", height: "100vh", }}>
         {/* Conditionally render Sidebar */}
         {!isLandingPage && currentUser && (
           <Sidebar>
