@@ -28,7 +28,7 @@ const StockGraph = () => {
 				marginLeft: "3%",
 				borderRadius: "15px",
 				marginTop: "24px",
-				width: "80%",
+				width: "82%",
 			}}>
 			<h3 className="text-center">Stock Price Over Time</h3>
 			<ResponsiveContainer width="100%" height={470}>
