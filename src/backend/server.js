@@ -16,17 +16,8 @@ const CACHE_DURATION = 60000; // 1 minute
 const fetchTweets = async () => {
     const currentTime = Date.now();
 
-    // Check if we are within the cache duration
-    if (currentTime - lastFetchTime < CACHE_DURATION) {
-        console.log('📦 Serving cached tweets');
-        return; // Return if within cache duration
-    }
-
     try {
-        console.log('📡 Fetching tweets...');
         const response = await axios.get('https://nitter.privacydev.net/search?q=stock%20market&f=tweets');
-
-        console.log('📝 Raw HTML received:', response.data.substring(0, 500)); // Log first 500 chars
 
         const $ = cheerio.load(response.data);
         tweets = [];
