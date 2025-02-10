@@ -1,58 +1,86 @@
 import React, { useState } from "react";
 import { BsArrowUpCircleFill, BsArrowDownCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import "../css/Invest.css";
+import "../css/Invest.css"; 
 
 export default function Invest() {
   const [selectedStock, setSelectedStock] = useState(null);
   const [duration, setDuration] = useState("6 months");
   const navigate = useNavigate();
 
+  
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   const companies = [
     {
       id: 1,
       name: "Apple Inc.",
       symbol: "AAPL",
-      open: 145.30,
-      high: 149.00,
-      close: 147.80,
+      open: 145.3,
+      high: 149.0,
+      close: 147.8,
       return: "5.2%",
       marketCap: "2.5T",
       peRatio: 29.7,
-      dividendYield: "0.58%",
-      sector: "Technology",
       isPositive: true,
-      image: "https://via.placeholder.com/50?text=Apple",
+      image: "https://imgs.search.brave.com/vyLq2KO_q8qXRgKudWdPGolzlS8WN9APY19wc7UiHOo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi9mL2ZhL0Fw/cGxlX2xvZ29fYmxh/Y2suc3ZnLzIyMHB4/LUFwcGxlX2xvZ29f/YmxhY2suc3ZnLnBu/Zw",
     },
     {
       id: 2,
       name: "Tesla Inc.",
       symbol: "TSLA",
-      open: 275.50,
-      high: 282.00,
-      close: 279.20,
+      open: 275.5,
+      high: 282.0,
+      close: 279.2,
       return: "-1.1%",
       marketCap: "826B",
       peRatio: 93.5,
-      dividendYield: "None",
-      sector: "Automotive",
       isPositive: false,
-      image: "https://via.placeholder.com/50?text=Tesla",
+      image: "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png",
     },
     {
       id: 3,
       name: "Amazon.com",
       symbol: "AMZN",
-      open: 120.10,
-      high: 124.00,
-      close: 121.70,
+      open: 120.1,
+      high: 124.0,
+      close: 121.7,
       return: "3.0%",
       marketCap: "1.6T",
       peRatio: 61.2,
-      dividendYield: "None",
-      sector: "Consumer Goods",
       isPositive: true,
-      image: "https://via.placeholder.com/50?text=Amazon",
+      image: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    },
+    {
+      id: 4,
+      name: "Google LLC",
+      symbol: "GOOGL",
+      open: 135.7,
+      high: 140.2,
+      close: 138.5,
+      return: "2.5%",
+      marketCap: "1.8T",
+      peRatio: 33.8,
+      isPositive: true,
+      image: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    },
+    {
+      id: 5,
+      name: "Microsoft Corp.",
+      symbol: "MSFT",
+      open: 310.5,
+      high: 320.1,
+      close: 315.8,
+      return: "4.0%",
+      marketCap: "2.3T",
+      peRatio: 40.1,
+      isPositive: true,
+      image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
     },
   ];
 
@@ -60,70 +88,59 @@ export default function Invest() {
     navigate(`/StocksDetail`);
   };
 
-  const handleDurationChange = (e) => {
-    setDuration(e.target.value);
-  };
-
   const calculatePrediction = (company) => {
-    let multiplier = 0;
-    if (duration === "6 months") multiplier = 0.1;
-    else if (duration === "1 year") multiplier = 0.2;
-    else if (duration === "3 years") multiplier = 0.5;
-
+    let multiplier = duration === "6 months" ? 0.1 : duration === "1 year" ? 0.2 : 0.5;
     const predictedEarning = parseFloat(company.return) + multiplier * parseFloat(company.return);
     return predictedEarning.toFixed(2) + "%";
   };
 
   return (
     <div className="invest-page">
-      <h1>Invest Page</h1>
+      <h1 className="invest-title">Invest Page</h1>
 
-      <div className="invest-header">
-        <span>Company</span>
-        <span>Open</span>
-        <span>High</span>
-        <span>Close</span>
-        <span>Return</span>
-        <span>Predicted Return(6 mos)</span>
-      </div>
-
-      <div className="invest-list">
+      <div className="invest-grid">
         {companies.map((company) => (
           <div
             key={company.id}
-            className="invest-row"
+            className="invest-card"
             onClick={() => handleStockClick(company)}
           >
-            <div className="company-item">
+            <div className="invest-header">
               <img src={company.image} alt={company.name} className="company-logo" />
-              <strong>{company.name}</strong> ({company.symbol})
+              <div>
+                <h2 className="company-name">{company.name} ({company.symbol})</h2>
+                <p className="market-cap">{company.marketCap} Market Cap</p>
+              </div>
             </div>
-            <div className="data-point">{company.open}</div>
-            <div className="data-point">{company.high}</div>
-            <div className="data-point">{company.close}</div>
-            <div className="data-point return">
-              {company.isPositive ? (
-                <BsArrowUpCircleFill className="icon-positive" />
-              ) : (
-                <BsArrowDownCircleFill className="icon-negative" />
-              )}
-              {company.return}
+
+            <p className="stock-date">{currentDate}</p> {/* Display Current Date in Card */}
+
+            <div className="invest-info">
+              <p><strong>Open:</strong> ${company.open}</p>
+              <p><strong>High:</strong> ${company.high}</p>
+              <p><strong>Close:</strong> ${company.close}</p>
+              <p className={`return ${company.isPositive ? "positive" : "negative"}`}>
+                {company.isPositive ? <BsArrowUpCircleFill className="icon" /> : <BsArrowDownCircleFill className="icon" />}
+                {company.return}
+              </p>
             </div>
-            <div className="data-point predict">
-              {company.id === selectedStock && (
-                <>
-                  <strong>Prediction:</strong> {calculatePrediction(company)}
-                  <div>
-                    <label htmlFor="duration">Select Duration: </label>
-                    <select value={duration} onChange={handleDurationChange}>
-                      <option value="6 months">6 Months</option>
-                      <option value="1 year">1 Year</option>
-                      <option value="3 years">3 Years</option>
-                    </select>
-                  </div>
-                </>
-              )}
-            </div>
+
+            {selectedStock === company.id && (
+              <div className="prediction-box">
+                <p><strong>Predicted Return:</strong> {calculatePrediction(company)}</p>
+                <label htmlFor="duration">Select Duration:</label>
+                <select
+                  id="duration"
+                  value={duration}
+                  onChange={(e) => setDuration(e.target.value)}
+                  className="duration-select"
+                >
+                  <option value="6 months">6 Months</option>
+                  <option value="1 year">1 Year</option>
+                  <option value="3 years">3 Years</option>
+                </select>
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -1,72 +1,78 @@
-
-
-.invest-header,
-.invest-row {
+/* Page Styling */
+.invest-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
 }
 
-.invest-header {
+/* Title Styling */
+.invest-title {
+  font-size: 2rem;
   font-weight: bold;
-  border-bottom: 2px solid #333;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.invest-row {
-  transition: background-color 0.2s ease-in-out;
+/* Grid Layout */
+.invest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* Individual Card */
+.invest-card {
+  background: #f0f0f0;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   cursor: pointer;
-  padding: 10px 0;
+  transition: all 0.3s ease-in-out;
 }
 
-.invest-row:hover {
-  background-color: #f8f9fa;
+.invest-card:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
-/* Company column */
-.company-item {
+/* Stock Date */
+.stock-date {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Header */
+.invest-header {
   display: flex;
   align-items: center;
-  flex: 2;
+  gap: 10px;
 }
 
 .company-logo {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
-  border-radius: 8px;
-  object-fit: cover;
+  border-radius: 10px;
 }
 
-/* Regular column widths */
-.data-point {
-  flex: 1;
-  text-align: center;
-}
-
-/* Return icon */
+/* Return Indicators */
 .return {
   display: flex;
   align-items: center;
-  justify-content: center;
   font-weight: bold;
 }
 
-.icon-positive {
-  color: green;
-  margin-right: 5px;
+.positive {
+  color: #28a745;
 }
 
-.icon-negative {
-  color: red;
-  margin-right: 5px;
-}
-
-/* Additional stock details */
-.stock-details {
-  margin-top: 10px;
-  padding-left: 20px;
-  border-left: 2px solid #ccc;
-  background-color: #f9f9f9;
+.negative {
+  color: #dc3545;
 }
