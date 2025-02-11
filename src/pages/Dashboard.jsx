@@ -6,7 +6,6 @@ export default function Dashboard() {
 					{/* Dashboard content */}
 
 					<h1>Dashboard</h1>
-					<h2>soham is a gay </h2>
 				</div>
 			</div>
 		</>
