@@ -21,7 +21,6 @@ const STOCK_SYMBOLS = [
 	"MSFT",
 	"AMZN",
 	"TSLA",
-	"FB",
 	"NFLX",
 	"NVDA",
 	"INTC",
@@ -39,13 +38,6 @@ const STOCK_SYMBOLS = [
 	"DELL",
 	"SAP",
 	"UBER",
-	"LYFT",
-	"TWTR",
-	"SNAP",
-	"SHOP",
-	"SQ",
-	"ZM",
-	"DOCU",
 ];
 
 // Setup Finnhub Client
