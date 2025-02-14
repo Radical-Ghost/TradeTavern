@@ -16,12 +16,10 @@
 	display: none;
 }
 
-
-
 .company-card {
-    transition: transform 0.2s ease-in-out;
+	transition: transform 0.2s ease-in-out;
 }
 
 .company-card:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
 }

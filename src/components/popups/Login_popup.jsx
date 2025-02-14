@@ -1,134 +1,117 @@
 import { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
-import "../../css/Popup.css";
-import { auth, db } from '../../backend/Firebase'; // Firestore and Auth import
+import { Modal, Button, Form, Spinner, Alert } from "react-bootstrap";
+import "../../css/Login_Popup.css";
+import { auth, db } from "../../backend/Firebase"; 
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { doc, setDoc, getDoc } from "firebase/firestore"; // Firestore methods
+import { doc, setDoc, getDoc } from "firebase/firestore"; 
+import Backdrop from './Backdrop.jsx'; // Import the Backdrop component
 
-export default function LoginModal({ show, handleClose }) {
+export default function Login_Popup({ show, handleClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Function to check if user exists in Firestore or not 
   const checkAndCreateUserInFirestore = async (user) => {
-    const userRef = doc(db, "user", user.uid); 
-    const userDoc = await getDoc(userRef); 
-	// if doc not found crater user
+    const userRef = doc(db, "user", user.uid);
+    const userDoc = await getDoc(userRef);
+    
     if (!userDoc.exists()) {
-      
-      console.log("User not found in Firestore, creating new user document.");
-      await setDoc(userRef, {
-        email: user.email,
-        uid: user.uid,
-        
-      });
-      console.log("New user document created in Firestore:", user.email);
-    } else {
-      
-      console.log("User found in Firestore:", user.email);
+      await setDoc(userRef, { email: user.email, uid: user.uid });
     }
   };
 
-  // Handle Email/Password login
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
+
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // Check and create user in Firestore if needed
-      await checkAndCreateUserInFirestore(user);
-
-      console.log("User logged in:", user.email);
-      navigate(`/${user.uid}/home`);
+      await checkAndCreateUserInFirestore(userCredential.user);
+      navigate(`/${userCredential.user.uid}/home`);
+      handleClose();
     } catch (error) {
-      console.error("Error during login:", error.message);
-      alert("Error: " + error.message);
+      setError(error.message);
     }
 
-    // Clear form after submission
+    setLoading(false);
     setEmail("");
     setPassword("");
-    handleClose(); // Close the modal
   };
 
-  // Handle Google login
   const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError("");
+
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-
-      // Check and create user in Firestore if needed
-      await checkAndCreateUserInFirestore(user);
-
-      console.log("User logged in with Google:", user.email);
-      navigate(`/${user.uid}/home`);
+      await checkAndCreateUserInFirestore(result.user);
+      navigate(`/${result.user.uid}/home`);
+      handleClose();
     } catch (error) {
-      console.error("Error during Google login:", error.message);
-      alert("Error: " + error.message);
+      setError(error.message);
     }
+
+    setLoading(false);
   };
 
   return (
-    <Modal
-      show={show}
-      onHide={handleClose}
-      centered
-      dialogClassName="custom-modal"
-      contentClassName="custom-modal">
-      <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formEmail">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="formPassword">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <div className="d-flex justify-content-end mt-3">
-            <Button
-              variant="secondary"
-              onClick={handleClose}
-              className="custom-modal-button">
-              Close
-            </Button>
-            <Button
-              variant="primary"
-              type="submit"
-              className="ms-2 custom-modal-button">
-              Login
+    <>
+      <Backdrop show={show} onClick={handleClose} />
+      <Modal show={show} onHide={handleClose} centered dialogClassName="custom-modal">
+        <Modal.Header closeButton>
+          <Modal.Title>Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {error && <Alert variant="danger">{error}</Alert>}
+
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+
+            <div className="d-flex justify-content-center mt-3">
+              {/* <Button variant="secondary" onClick={handleClose} className="custom-modal-button-close">
+                Close
+              </Button> */}
+              <Button variant="primary" type="submit" className="ms-2 custom-modal-button" disabled={loading}>
+                {loading ? <Spinner animation="border" size="sm" /> : "Login"}
+              </Button>
+            </div>
+          </Form>
+
+          <div className="text-center my-3">
+            <span>Or</span>
+          </div>
+
+          <div className="d-flex justify-content-center">
+            <Button variant="outline-primary" onClick={handleGoogleLogin} disabled={loading}>
+              <img src="https://th.bing.com/th?id=OIP.rC4ds-dkwjzSmdyig-1lqwHaHa&w=250&h=250&c=8&rs=1&qlt=90&r=0&o=6&dpr=1.3&pid=3.1&rm=2" alt="Google logo" className="google-icon" />
+              {loading ? <Spinner animation="border" size="sm" /> : "Sign in with Google"}
             </Button>
           </div>
-        </Form>
-
-        <div className="text-center my-3">
-          <span>Or</span>
-        </div>
-
-        <div className="d-flex justify-content-center">
-          <Button variant="outline-primary" onClick={handleGoogleLogin}>
-            <img src="https://th.bing.com/th?id=OIP.rC4ds-dkwjzSmdyig-1lqwHaHa&w=250&h=250&c=8&rs=1&qlt=90&r=0&o=6&dpr=1.3&pid=3.1&rm=2" alt="Google logo" style={{ width: "20px", marginRight: "8px" }} />
-            Sign in with Google
-          </Button>
-        </div>
-      </Modal.Body>
-    </Modal>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }

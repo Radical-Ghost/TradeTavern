@@ -23,22 +23,60 @@ const StockGraph = () => {
 
 	return (
 		<div
-			className="bg-light p-3"
 			style={{
-				marginLeft: "3%",
+				backgroundColor: "#1C2331", // Background for the entire container
 				borderRadius: "15px",
-				marginTop: "24px",
-				width: "82%",
+				width: "100%",
+				height: "100%",
+				padding: "20px", // Add padding for spacing
 			}}>
-			<h3 className="text-center">Stock Price Over Time</h3>
-			<ResponsiveContainer width="100%" height={470}>
-				<LineChart data={stockData}>
-					<CartesianGrid strokeDasharray="3 3" />
-					<XAxis dataKey="date" />
-					<YAxis domain={["auto", "auto"]} />
-					<Tooltip />
-					<Legend />
-					<Line type="monotone" dataKey="price" stroke="#82ca9d" />
+			<h3 style={{ 
+				color: "#FFFFFF", // White text for the header
+				textAlign: "center", 
+				marginBottom: "20px", 
+			}}>
+				Stock Price Over Time
+			</h3>
+			<ResponsiveContainer width="100%" height="90%">
+				<LineChart
+					data={stockData}
+					style={{
+						backgroundColor: "#1C2331", // Background color for the graph area
+						borderRadius: "10px", // Rounded corners for the graph
+					}}
+				>
+					<CartesianGrid 
+						strokeDasharray="3 3" 
+						stroke="#4A5568" // Light gray grid lines
+					/>
+					<XAxis 
+						dataKey="date" 
+						stroke="#FFFFFF" // White text for x-axis
+						tick={{ fill: "#FFFFFF" }} // White ticks
+					/>
+					<YAxis 
+						stroke="#FFFFFF" // White text for y-axis
+						tick={{ fill: "#FFFFFF" }} // White ticks
+					/>
+					<Tooltip 
+						contentStyle={{
+							backgroundColor: "#1C2331", // Dark background for tooltip
+							color: "#FFFFFF", // White text for tooltip
+							border: "1px solid #4A5568", // Light gray border
+							borderRadius: "5px", // Rounded corners for tooltip
+						}}
+					/>
+					<Legend 
+						wrapperStyle={{
+							color: "#FFFFFF", // White text for legend
+						}}
+					/>
+					<Line 
+						type="monotone" 
+						dataKey="price" 
+						stroke="#82ca9d" // Green line for the stock price
+						strokeWidth={2} // Thicker line for better visibility
+					/>
 				</LineChart>
 			</ResponsiveContainer>
 		</div>

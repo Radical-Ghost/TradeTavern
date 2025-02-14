@@ -1,0 +1,160 @@
+/* Smooth Glassmorphism Modal */
+.custom-modal {
+  /* background: rgba(255, 255, 255, 0.15); Soft frosted glass effect */
+  /* backdrop-filter: blur(5px); */
+  border-radius: 18px;
+  padding: 3%;
+  width: 100%;
+  /* max-width: 600px; */
+  height: auto;
+  max-height: 45vh;
+  margin: 3vh auto 0 auto; /* More space from the top */
+  position: relative;
+  z-index: 1000;
+  /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); Soft depth effect */
+  /* transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
+}
+
+/* .custom-modal:hover {
+  /* box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25); */
+
+/* Modal Content */
+.custom-modal .modal-content {
+  width: 100%;
+  padding: 3%;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Modal Body */
+.custom-modal .modal-body {
+  padding: 3%;
+}
+
+/* Smooth Input Fields */
+.custom-modal input {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #333;
+  margin-bottom: 15px;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+
+.custom-modal input:focus {
+  border-color: rgba(0, 132, 255, 0.6);
+  box-shadow: 0 5px 15px rgba(0, 132, 255, 0.2);
+  outline: none;
+}
+.custom-modal-button {
+  width: 40%;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  color: white;
+  border: none;
+  font-weight: bold;
+  transition: background 0.4s ease-out, box-shadow 0.4s ease-out, transform 0.3s ease-out;
+  box-shadow: 0 3px 10px rgba(0, 132, 255, 0.2);
+}
+
+.custom-modal-button:hover {
+  background: linear-gradient(135deg, #0055dd, #00aaff);
+  box-shadow: 0 6px 18px rgba(0, 132, 255, 0.3);
+  transform: translateY(-2px); /* Slight lift effect */
+  cursor: pointer;
+}
+
+.custom-modal-button:active {
+  transform: scale(0.95); /* Slight press effect */
+  box-shadow: 0 3px 10px rgba(0, 132, 255, 0.2);
+}
+
+
+
+
+
+.custom-modal-button-close{
+  width: 40%;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  color: white;
+  border: none;
+  font-weight: bold;
+  transition: background 0.4s ease-out, box-shadow 0.4s ease-out, transform 0.3s ease-out;
+  box-shadow: 0 3px 10px rgba(255, 0, 17, 0.2);
+  background: linear-gradient(90deg, #ff5f5f, #d32f2f);
+  
+}
+
+
+.custom-modal-button-close:hover {
+  background: linear-gradient(90deg, #d32f2f, #b22222);
+  box-shadow: 0 6px 15px rgba(255, 95, 95, 0.4);
+  transform: translateY(-2px); /* Slight lift effect */
+  cursor: pointer;
+}
+
+.custom-modal-button-close:active {
+  transform: scale(0.95); /* Slight press effect */
+  box-shadow: 0 3px 10px rgba(0, 132, 255, 0.2);
+}
+
+
+
+
+.google-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #333;
+  transition: background 0.4s ease-out, box-shadow 0.4s ease-out, transform 0.3s ease-out;
+}
+
+.google-login-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 18px rgba(0, 132, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.google-login-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 10px rgba(0, 132, 255, 0.2);
+}
+/* Google Icon */
+.google-icon {
+  width: 16px;
+  margin-right: 8px;
+}
+.custom-modal .modal-header .btn-close {
+    background-color: #ff4d4d; /* Red color for clear visibility */
+    color: white;
+    /* border-radius: 50%; */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background 0.3s ease-out, transform 0.2s ease-out;
+}
+
+.custom-modal .modal-header .btn-close:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    transform: scale(1.1); /* Slight pop effect */
+}
+
+.custom-modal .modal-header .btn-close:active {
+    transform: scale(0.9); /* Press effect */
+}

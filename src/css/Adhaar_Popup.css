@@ -1,0 +1,111 @@
+/* Custom Modal Styling */
+.custom-modals {
+  background: rgba(255, 255, 255, 0.15);/* Soft frosted glass effect*/
+  backdrop-filter: blur(20px);
+  padding: 3%;
+  width: 50%;
+  max-width: 600px;
+  height: auto;
+  max-height: 65vh;
+  margin: 5vh auto;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Modal Content */
+.custom-modals .modal-content {
+  width: 100%;
+  padding: 5%;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #f8f9fa, #eef1f7);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Smooth Modal Appear Animation */
+.modal.fade .modal-dialog {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Modal Inputs */
+.custom-modals input {
+  padding: 3%;
+  border: 2px solid #d1d1d1;
+  border-radius: 8px;
+  margin-bottom: 5%;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  font-size: 1rem;
+  background: #ffffff;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.custom-modals input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Labels */
+.custom-modals label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Buttons */
+.custom-modals-button {
+  width: 40%;
+  padding: 2.5%;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, #007bff, #0056d2);
+  color: #ffffff;
+  border: none;
+}
+
+.submit-btn:hover {
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #0056d2, #003e99);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+.close-btn {
+  background: linear-gradient(90deg, #ff5f5f, #d32f2f);
+  color: #ffffff;
+  border: none;
+}
+
+.close-btn:hover {
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #d32f2f, #b22222);
+  box-shadow: 0 6px 15px rgba(255, 95, 95, 0.4);
+}
+
+/* Close Button */
+.modal-header .btn-close {
+  filter: none;
+  opacity: 0.9;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.modal-header .btn-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}

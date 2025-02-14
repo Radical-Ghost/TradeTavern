@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 const CompanyNews = () => {
     const [tweets, setTweets] = useState([]);
     const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchTweets = async () => {
             try {
@@ -24,26 +25,26 @@ const CompanyNews = () => {
 
     return (
         <div
-            
             style={{
-                marginLeft:'3vh',
+                // marginLeft: '2vh',
                 padding: '20px',
                 backgroundColor: '#f0f0f0',
                 borderRadius: '15px',
-                height: '60vh', // Fixed height
-                width:'100vh',
-                overflowY: 'auto', // Scrollable
+                width: '100%',
+                overflowY: 'auto', // Enable scrolling for overflow content
                 scrollbarWidth: 'none', // Hide scrollbar (Firefox)
                 msOverflowStyle: 'none', // Hide scrollbar (IE/Edge)
+                backgroundColor: "#1C2331",
+                color: "white",
             }}
         >
             <style>
                 {`
-          /* Hide scrollbar for Chrome, Safari, and Edge */
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}
+                    /* Hide scrollbar for Chrome, Safari, and Edge */
+                    div::-webkit-scrollbar {
+                        display: none;
+                    }
+                `}
             </style>
             <h2>Company News from Twitter (via Nitter)</h2>
             {error ? (
@@ -57,7 +58,6 @@ const CompanyNews = () => {
                             padding: '10px',
                             border: '1px solid #ddd',
                             borderRadius: '10px',
-                            // backgroundColor: '#fff',
                         }}
                     >
                         <p>{tweet.text}</p>

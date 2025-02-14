@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import "../../css/Popup.css";
+import "../../css/Adhaar_Popup.css";
+import Backdrop from './Backdrop.jsx'; // Import the Backdrop component
 
 export default function AadhaarModal({ show, handleClose }) {
     const [email, setEmail] = useState("");
@@ -10,26 +11,27 @@ export default function AadhaarModal({ show, handleClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can add logic here to handle form submission
         console.log("Submitted Info:", { email, name, aadhaar, pan });
-        
+
         // Clear the form fields after submission
         setEmail("");
         setName("");
         setAadhaar("");
         setPan("");
-        
+
         // Close the modal
         handleClose();
     };
 
     return (
+        <>
+        <Backdrop show={show} onClick={handleClose} />
         <Modal
             show={show}
             onHide={handleClose}
             centered
-            dialogClassName="custom-modall"
-            contentClassName="custom-modal">
+            dialogClassName="custom-modals"
+            contentClassName="custom-modals">
             <Modal.Header closeButton>
                 <Modal.Title>Submit Your Details</Modal.Title>
             </Modal.Header>
@@ -60,7 +62,7 @@ export default function AadhaarModal({ show, handleClose }) {
                             value={aadhaar}
                             onChange={(e) => setAadhaar(e.target.value)}
                             required
-                            pattern="\d{12}" // Ensure it's 12 digits
+                            pattern="\d{12}"
                             title="Please enter a valid 12-digit Aadhaar number"
                         />
                     </Form.Group>
@@ -71,26 +73,27 @@ export default function AadhaarModal({ show, handleClose }) {
                             value={pan}
                             onChange={(e) => setPan(e.target.value)}
                             required
-                            pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" // Ensure PAN format
+                            pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
                             title="Please enter a valid PAN card number in the format ABCDE1234F"
                         />
                     </Form.Group>
-                    <div className="d-flex justify-content-end mt-3">
+                    <div className="d-flex justify-content-end mt-4">
                         <Button
                             variant="secondary"
                             onClick={handleClose}
-                            className="custom-modal-button">
+                            className="custom-modal-button close-btn">
                             Close
                         </Button>
                         <Button
                             variant="primary"
                             type="submit"
-                            className="ms-2 custom-modal-button">
+                            className="ms-3 custom-modal-button submit-btn">
                             Submit
                         </Button>
                     </div>
                 </Form>
             </Modal.Body>
-        </Modal>
+            </Modal>
+            </>
     );
 }

@@ -1,39 +1,66 @@
 import React from "react";
 import TopCompanies from '../components/TopCompanies';
 import StockGraph from '../components/StockGraph';
-import CompanyNews from "../components/CompanyNews"; // Import the new component
+import CompanyNews from "../components/CompanyNews";
 
 const Home = () => {
 	return (
 		<div style={{
-			height: "100vh",
+			backgroundColor: "#0F1621", // Dark background for a sleek look
+			minHeight: "100vh",
 			display: "flex",
-			flexDirection: "row",
+			flexDirection: "column",
 			gap: "20px",
-			padding: "20px"
+			padding: "20px",
+			boxSizing: "border-box",
+			fontFamily: "'Inter', sans-serif", // Modern sans-serif font
+			color: "#FFFFFF", // White text for contrast
 		}}>
-			{/* Left Column: Stock Graph and News */}
+			{/* Top Row: Stock Graph and Top Companies */}
 			<div style={{
-				flex: 1,
 				display: "flex",
-				flexDirection: "column",
+				flexDirection: "row",
 				gap: "20px",
-				marginTop:'-2vh',
+				flex: 1,
 			}}>
-				<StockGraph />
-				<CompanyNews /> {/* News appears below the graph */}
+				{/* Left Column: Stock Graph */}
+				<div style={{
+					flex: 1,
+					backgroundColor: "#1C2331", // Darker background for the graph
+					borderRadius: "15px",
+					height: "71vh",
+					overflow: "hidden",
+					boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow for depth
+					border: "1px solid rgba(255, 255, 255, 0.1)", // Subtle border
+				}}>
+					<StockGraph />
+				</div>
+
+				{/* Right Column: Top Companies */}
+				<div style={{
+					flex: 0.6,
+					backgroundColor: "#1C2331", // Darker background for the companies list
+					borderRadius: "15px",
+					overflowY: "auto",
+					height: "71vh",
+					boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow for depth
+					border: "1px solid rgba(255, 255, 255, 0.1)", // Subtle border
+				}}>
+					<TopCompanies />
+				</div>
 			</div>
 
-			{/* Right Column: Top Companies */}
+			{/* Bottom Row: Company News (Full Width) */}
 			<div style={{
-				flex: 0.6,
-				overflowY: "auto",
-				height: "66%",
-				backgroundColor: "lavender",
+				backgroundColor: "#1C2331", // Darker background for the news section
 				borderRadius: "15px",
-				
+				padding: "20px",
+				width: "100%",
+				overflowY: "auto",
+				boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow for depth
+				border: "1px solid rgba(255, 255, 255, 0.1)", // Subtle border
 			}}>
-				<TopCompanies />
+				<CompanyNews />
 			</div>
 		</div>
 	);
