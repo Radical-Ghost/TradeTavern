@@ -22,7 +22,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Icons for sidebar
-import { FaHome, FaInfoCircle, FaDollarSign } from "react-icons/fa";
+import { FaHome, FaInfoCircle, FaDollarSign, FaStar } from "react-icons/fa";
 import { MdOutlineDashboard, MdHelpOutline } from "react-icons/md";
 
 import { auth } from "../backend/Firebase"; // Firebase auth import
@@ -90,7 +90,7 @@ export default function App() {
 							active={location.pathname.includes("/invest")}
 						/>
 						<SidebarItem
-							icon={<FaDollarSign size={25} style={iconStyle} />}
+							icon={<FaStar size={25} style={iconStyle} />}
 							text="Subscriptions"
 							to={`/${currentUser?.uid}/subscriptions`}
 							active={location.pathname.includes(

@@ -1,77 +1,116 @@
-import express from 'express';
-import axios from 'axios';
-import * as cheerio from 'cheerio';
-import cors from 'cors';
+import express from "express";
+import cors from "cors";
+import finnhub from "finnhub";
+import dotenv from "dotenv";
+import axios from "axios";
+import * as cheerio from "cheerio";
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-console.log('🔄 Server is starting...');
+// Data store for stock quotes
+const stockQuotes = {};
+
+// NSE stocks list
+const STOCK_SYMBOLS = [
+	"AAPL",
+	"GOOGL",
+	"MSFT",
+	"AMZN",
+	"NVDA",
+	"INTC",
+	"CSCO",
+	"ADBE",
+	"ORCL",
+	"IBM",
+	"QCOM",
+	"TXN",
+	"AMD",
+	"MU",
+	"HPQ",
+	"DELL",
+	"SAP",
+	"UBER",
+];
+
+// Setup Finnhub Client
+const ApiClient = finnhub.ApiClient.instance;
+const api_key = ApiClient.authentications["api_key"];
+api_key.apiKey = process.env.FINNHUB_API_KEY;
+const finnhubClient = new finnhub.DefaultApi();
 
 let tweets = [];
-let lastFetchTime = 0;
-const CACHE_DURATION = 60000; // 1 minute
 
-const fetchTweets = async () => {
-    const currentTime = Date.now();
-
-    // Check if we are within the cache duration
-    if (currentTime - lastFetchTime < CACHE_DURATION) {
-        console.log('📦 Serving cached tweets');
-        return; // Return if within cache duration
-    }
-
-    try {
-        console.log('📡 Fetching tweets...');
-        const response = await axios.get('https://nitter.privacydev.net/search?q=stock%20market&f=tweets');
-
-        console.log('📝 Raw HTML received:', response.data.substring(0, 500)); // Log first 500 chars
-
-        const $ = cheerio.load(response.data);
-        tweets = [];
-
-        $('.timeline-item').each((_, element) => {
-            const text = $(element).find('.tweet-content').text().trim();
-            const author = $(element).find('.username').text().trim();
-            const timestamp = $(element).find('.tweet-date a').attr('title');
-
-            if (text) {
-                tweets.push({ author, text, timestamp });
-            }
-        });
-
-        console.log('📊 Parsed Tweets:', tweets);
-        lastFetchTime = currentTime; // Update last fetch time
-
-        if (tweets.length === 0) {
-            console.warn('⚠️ No tweets found. Check the HTML structure and selectors.');
-        }
-    } catch (error) {
-        if (error.response && error.response.status === 429) {
-            console.warn('⚠️ Rate limit exceeded. Retrying in 60 seconds...');
-            setTimeout(fetchTweets, 60000); // Retry after 60 seconds
-        } else {
-            console.error('❌ Error fetching tweets:', error);
-        }
-    }
+const fetchStockQuotes = () => {
+	STOCK_SYMBOLS.forEach((symbol, index) => {
+		setTimeout(() => {
+			finnhubClient.quote(symbol, (error, data, response) => {
+				if (error) {
+					console.error(`Error fetching quote for ${symbol}:`, error);
+				} else {
+					stockQuotes[symbol] = data;
+					console.log(`Quote for ${symbol}:`, data);
+				}
+			});
+		}, index * 2000); // 2000ms delay between each call
+	});
 };
 
-// Initial fetch
+const fetchTweets = async () => {
+	try {
+		const response = await axios.get(
+			"https://nitter.privacydev.net/search?q=stock%20market&f=tweets"
+		);
+		const $ = cheerio.load(response.data);
+		tweets = [];
+
+		$(".timeline-item").each((_, element) => {
+			const text = $(element).find(".tweet-content").text().trim();
+			const author = $(element).find(".username").text().trim();
+			const timestamp = $(element).find(".tweet-date a").attr("title");
+
+			if (text) {
+				tweets.push({ author, text, timestamp });
+			}
+		});
+		if (tweets.length === 0) {
+			console.warn(
+				"⚠️ No tweets found. Check the HTML structure and selectors."
+			);
+		}
+	} catch (error) {
+		if (error.response && error.response.status === 429) {
+			console.warn("⚠️ Rate limit exceeded. Retrying in 60 seconds...");
+			setTimeout(fetchTweets, 60000); // Retry after 60 seconds
+		} else {
+			console.error("❌ Error fetching tweets:", error);
+		}
+	}
+};
+
+// Initial fetches
+fetchStockQuotes();
 fetchTweets();
 
-// Root route
-app.get('/', (req, res) => {
-    console.log('✅ Root route accessed');
-    res.send('✅ Server is running! Use /api/tweets to fetch data.');
+// Optional: Root route returns a simple message
+app.get("/", (req, res) => {
+	res.send("API is running.");
 });
 
 // Tweets API route
-app.get('/api/tweets', (req, res) => {
-    res.json(tweets);
+app.get("/api/tweets", (req, res) => {
+	res.json(tweets);
+});
+
+// Stocks API route
+app.get("/api/stock-quotes", (req, res) => {
+	res.json(stockQuotes);
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
+	console.log(`Server running on port ${PORT}`);
 });
