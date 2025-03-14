@@ -11,7 +11,7 @@ TradeTavern is a web application that harnesses the power of machine learning to
 -   Personalized Watchlists: Customizable watchlists to track favorite stocks.
 -   Real-time Insights: Up-to-date market data and predictions for timely decision-making.
 
-## Technology Stack
+## Technologies used
 
 -   Frontend: React
 -   Backend: Node.js, Express.js
